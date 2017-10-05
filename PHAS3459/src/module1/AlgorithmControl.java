@@ -44,14 +44,12 @@ public class AlgorithmControl {
 			int loops = 0;   // initialise number of loops
 			int iremainder = loops % 100;   // remainder to check if number of loops if multiple of 100; boolean condition
 			// while loop prints number of loops when it is a multiple of 100
-			while (iremainder == 0 ) {
-				long newtime = System.currentTimeMillis();   // define current time
-				while(newtime < t + 10000.) {   // limits loop to 10 seconds past initial time
-					newtime = System.currentTimeMillis();   // update the time
-					loops = loops + 1; // counting loops
+			while(System.currentTimeMillis() < t + 10000.) {   // limits loop to 10 seconds past initial time
+				    if (loops % 100 == 0 ) {
 				    System.out.println("Number of loops "+loops);
 			
 				}
+				    loops = loops + 1; // counting loops
 			}
 		}
 				
@@ -62,10 +60,13 @@ public class AlgorithmControl {
 		// calling all methods defined earlier
 		ac.loop();
 		System.out.println();
+		
 		ac.decrement();
 		System.out.println();
+		
 		ac.increment();
 		System.out.println();
+		
 		ac.timer();
 		
 		
