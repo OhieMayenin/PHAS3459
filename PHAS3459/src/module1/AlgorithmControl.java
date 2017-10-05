@@ -38,19 +38,20 @@ public class AlgorithmControl {
 		}
 			
 		// writing the timer method
-		public void timer() {
+		public int timer(long maxTime, int loopSteps) {
 			// Setting up while loop to run for 10 seconds
 			long t = System.currentTimeMillis();   // initial time
 			int loops = 0;   // initialise number of loops
 			int iremainder = loops % 100;   // remainder to check if number of loops if multiple of 100; boolean condition
 			// while loop prints number of loops when it is a multiple of 100
-			while(System.currentTimeMillis() < t + 10000.) {   // limits loop to 10 seconds past initial time
-				    if (loops % 100 == 0 ) {
+			while(System.currentTimeMillis() < t + maxTime) {   // limits loop to 10 seconds past initial time
+				    if (loops % loopSteps == 0 ) {
 				    System.out.println("Number of loops "+loops);
 			
 				}
 				    loops = loops + 1; // counting loops
 			}
+			return loops;
 		}
 				
 
@@ -67,7 +68,24 @@ public class AlgorithmControl {
 		ac.increment();
 		System.out.println();
 		
-		ac.timer();
+		
+		// input first the time limit in milliseconds and then loop steps
+		int total_loops = ac.timer(8000, 1000); // (milliseconds, loop steps)
+		System.out.println("The total number of loops: "+total_loops);
+		System.out.println();
+		
+		
+		// trying with a loop step of 40,000
+		int total_loops_40k = ac.timer(8000, 40000); // (milliseconds, loop steps)
+		System.out.println();
+		System.out.println("The total number of loops with 1000 loopstep: "+total_loops);
+		System.out.println("The total number of loops with 40000 loopstep: "+total_loops_40k);
+		// the total number of loops is much greater when the loop step is set to 40000 compared to just 1000
+		
+		System.out.println();
+		
+		System.out.println("The total number of loops is much greater when the loop step is set to 40,000, compared to when set to 1000. This is because there are less tasks to complete, in this case less numbers to output to the console, so the computer can get through more loops in a given time.");
+		
 		
 		
 		
