@@ -22,7 +22,7 @@ public class VectorMethods {
 	public double angle(double x1,double y1,double z1, double x2, double y2, double z2) {
 			double ang;
 			// calculates angle between two 3-D vectors
-			ang = x1;
+			ang = Math.acos((dotProduct(x1,y1,z1,x2,y2,z2))/(magnitude(x1,y1,z1)*magnitude(x2,y2,z2)));
 			return ang;
 		
 		
@@ -38,8 +38,14 @@ public class VectorMethods {
 		double scalarprod = vm.dotProduct(1, 2, 3, 4, 5, 6);
 		System.out.println("The scalar product of the vectors (1,2,3) and (4,5,6) is "+scalarprod);
 		
+		// calling angle function to calculate angle between two vectors
+		// angle 1 between vectors (2,3,4) and (1,3,2)
+		double angle1 = vm.angle(2, 3, 4, 1, 3, 2);
+		System.out.println("The angle between vectors (2,3,4) and (1,3,2) is "+angle1 +" radians");
 		
-
+		// angle 2 between vectors (2,3,4) and (0,0,0)
+		double angle2 = vm.angle(2, 3, 4, 0, 0, 0);
+		System.out.println("The angle between vectors (2,3,4) and (0,0,0) is "+angle2 +" radians");
 	}
 
 }
