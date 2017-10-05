@@ -17,6 +17,8 @@ public class VectorMethods {
 		dotprod = x1*x2 + y1*y2 + z1*z2; // calculates dot product for two 3-D vectors
 		return dotprod;
 		
+		 }
+		
 	public double angle(double x1,double y1,double z1, double x2, double y2, double z2) {
 			double ang;
 			// calculates angle between two 3-D vectors
