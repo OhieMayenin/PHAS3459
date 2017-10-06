@@ -1,3 +1,5 @@
+// This class is to see how to write functions and then call them when performing calculations.
+
 package module1;
 
 public class VectorMethods {

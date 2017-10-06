@@ -1,3 +1,5 @@
+// This class is to write void methods, and also to write a timer loop.
+
 package module1;
 
 public class AlgorithmControl {

@@ -1,3 +1,5 @@
+// This class is to explore different data types and mixing them to see how they work.
+
 package module1;
 
 public class DataTypes {
@@ -14,7 +16,7 @@ public class DataTypes {
 		int intVar = 10;
 		long longVar = 10;
 		byte byteVar = 10;
-		System.out.println(floatVar*intVar*longVar*byteVar);
+		System.out.println("Multiplying all the types together: "+floatVar*intVar*longVar*byteVar);
 		System.out.println();
 		
 		// Exploring how different types mix with each other
@@ -25,7 +27,7 @@ public class DataTypes {
 		
 		//long example = floatVar*intVar;
 		//System.out.println(example);
-		System.out.println("The code in lines 19 & 20 does not run, because the product of a float and an integer cannot be converted into a long");
+		System.out.println("The code in lines 28 & 29 does not run, because the product of a float and an integer cannot be converted into a long");
 		
 		char charVar2 = 'm'*2; // multiplying m by integer 4
 		System.out.println("m*2 returns "+charVar2);
@@ -33,7 +35,7 @@ public class DataTypes {
 		
 		//char chartimesfloat = 'a'*floatVar; //multiplying character f by float 2.0
 		
-		System.out.println("The character does not sum with or multiply with floats, as seen in code line 34");
+		System.out.println("The character does not sum with or multiply with floats, as seen in code line 36");
 		System.out.println();
 		
 		// Investigating what happens when a variable has not had its value initialised
@@ -41,7 +43,7 @@ public class DataTypes {
 		int j=1; int i;
 		//j=i+1;
 		//System.out.println(i);
-		System.out.println("The code in lines 39 & 40 doesn't work and fails to calculate that i must be equal to zero without its value being initialised first");
+		System.out.println("The code in lines 44 & 45 doesn't work and fails to calculate that i must be equal to zero without its value being initialised first");
 		System.out.println();
 		
 		
