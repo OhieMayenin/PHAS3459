@@ -82,7 +82,7 @@ public class ThreeVector {
 			public double angle(ThreeVector v2) {
 				
 				double numerator = scalarProduct(v2);
-				double denominator = magnitude()*v2.magnitude();
+				double denominator = magnitude()*magnitude(v2);
 				
 				double ang = Math.acos(numerator/denominator);
 				
@@ -93,20 +93,20 @@ public class ThreeVector {
 			
 	// NOW DEFINING STATIC VERSIONS OF ALL METHODS
 			// writing magnitude method for calculating the magnitude of a vector
-			public static double magnitude() {
+			public static double magnitude(ThreeVector v1) {
 				
 				double mag;
-				mag = Math.sqrt(x*x + y*y + z*z);
+				mag = Math.sqrt(v1.x*v1.x + v1.y*v1.y + v1.z*v1.z);
 				return mag;
 			}
 			
 			// writing method that returns unit vector in the same direction as input vector
-				ThreeVector unitvector() {
+				static ThreeVector unitvector(ThreeVector v1) {
 					
 					ThreeVector unit_vec;
-					double x_ct = x/magnitude();
-					double y_ct = y/magnitude(); 
-					double z_ct = z/magnitude();
+					double x_ct = v1.x/magnitude(v1);
+					double y_ct = v1.y/magnitude(v1); 
+					double z_ct = v1.z/magnitude(v1);
 					
 					unit_vec= new ThreeVector(x_ct,y_ct,z_ct);
 					
@@ -116,20 +116,20 @@ public class ThreeVector {
 				
 						
 			// writing scalar product method for calculating scalar product of two vectors
-				public static double scalarProduct(ThreeVector v2) {
+				public static double scalarProduct(ThreeVector v1,ThreeVector v2) {
 							
 						double scal_prod;
-						scal_prod = x*v2.x + y*v2.y + z*v2.z;
+						scal_prod = v1.x*v2.x + v1.y*v2.y + v1.z*v2.z;
 						return scal_prod;
 					}
 					
 			// writing scalar product method for calculating scalar product of two vectors
-				public static ThreeVector vectorProduct(ThreeVector v2) {
+				public static ThreeVector vectorProduct(ThreeVector v1,ThreeVector v2) {
 							
 						ThreeVector vect_prod;
-						double i = y*v2.z - z*v2.y;
-						double j = x*v2.z - z*v2.x;
-						double k = x*v2.y - y*v2.x;
+						double i = v1.y*v2.z - v1.z*v2.y;
+						double j = v1.x*v2.z - v1.z*v2.x;
+						double k = v1.x*v2.y - v1.y*v2.x;
 						
 						vect_prod = new ThreeVector(i,j,k);
 						
@@ -137,12 +137,12 @@ public class ThreeVector {
 								}
 					
 			// writing add method for adding two three vectors
-				public static ThreeVector add(ThreeVector v2) {
+				public static ThreeVector add(ThreeVector v1, ThreeVector v2) {
 						
 						ThreeVector sum;
-						double e_i = x + v2.x;
-						double e_j = y + v2.y;
-						double e_k = z + v2.z;
+						double e_i = v1.x + v2.x;
+						double e_j = v1.y + v2.y;
+						double e_k = v1.z + v2.z;
 						
 						sum = new ThreeVector(e_i,e_j,e_k);
 						
@@ -151,10 +151,10 @@ public class ThreeVector {
 					}
 					
 			// writing angle method for calculating the angle between two vectors
-				public static double angle(ThreeVector v2) {
+				public static double angle(ThreeVector v1, ThreeVector v2) {
 						
-						double numerator = scalarProduct(v2);
-						double denominator = magnitude()*v2.magnitude();
+						double numerator = scalarProduct(v1,v2);
+						double denominator = magnitude(v1)*magnitude(v2);
 						
 						double ang = Math.acos(numerator/denominator);
 						
