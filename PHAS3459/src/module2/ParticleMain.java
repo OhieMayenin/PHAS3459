@@ -1,3 +1,5 @@
+// This class will test the methods written in the FallingParticle class by simulating the falling particle, and outputting the final physical parameters //
+
 package module2;
 
 public class ParticleMain {
@@ -48,7 +50,8 @@ public class ParticleMain {
 		
 		// explanations
 		System.out.println();
-		System.out.println("");
+		System.out.println("The smaller the time increment dT, the more accurate the final answers are to the real world scenario, because the change in position and velocity and calculated more frequently, so the while loop will end without the particle travelling through the floor significantly.");
+		System.out.println("The first answer has a relatively large dT, so the time elapsed and final velocity are both overestimated, as the particle travelled through the floor before the while loop stopped.");
 	}
 
 }

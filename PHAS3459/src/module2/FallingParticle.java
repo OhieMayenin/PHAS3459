@@ -1,3 +1,6 @@
+// This  class will define a Falling Particle with physical parameters and write relevant methods in order to simulate a particle... //
+// ...being dropped from a specified height, which will be tested in the ParticleMain class.//
+
 package module2;
 
 public class FallingParticle {
