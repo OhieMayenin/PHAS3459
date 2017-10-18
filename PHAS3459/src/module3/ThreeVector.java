@@ -14,18 +14,18 @@ public class ThreeVector {
 	
 	
 // DEFINING STATIC VERSIONS OF ALL METHODS //
+	
 	// writing magnitude method for calculating the magnitude of a vector
 	public static double magnitude(ThreeVector v1) {
-		
 		double mag;
 		mag = Math.sqrt(v1.x*v1.x + v1.y*v1.y + v1.z*v1.z);
 		return mag;
 	}
 	
 	// writing method that returns unit vector in the same direction as input vector
-		public static ThreeVector unitvector(ThreeVector v1) throws Exception {
+	public static ThreeVector unitvector(ThreeVector v1) throws Exception {
 			if (v1.x ==0 && v1.y ==0 && v1.z ==0) {
-				System.out.println("The null vector has no unit vector associated with it.");
+				throw new Exception("The null vector has no unit vector associated with it.");
 			}	
 			ThreeVector unit_vec;
 			double x_ct = v1.x/magnitude(v1);
@@ -58,7 +58,7 @@ public class ThreeVector {
 				vect_prod = new ThreeVector(i,j,k);
 				
 				return vect_prod;
-						}
+				}
 			
 	// writing add method for adding two three vectors
 		public static ThreeVector add(ThreeVector v1, ThreeVector v2) {
@@ -72,13 +72,13 @@ public class ThreeVector {
 				
 				return sum;
 				
-			}
+				}
 			
 	// writing angle method for calculating the angle between two vectors
 		public static double angle(ThreeVector v1, ThreeVector v2) throws Exception {
 			if (v1.x*v2.x ==0 && v1.y*v2.y ==0 && v1.z*v2.z ==0) {
-				System.out.println("There is no angle between a non-zero vector and a null vector.");
-			}	
+				throw new Exception("There is no angle between a non-zero vector and a null vector.");
+				}	
 				double numerator = scalarProduct(v1,v2);
 				double denominator = magnitude(v1)*magnitude(v2);
 				
@@ -86,7 +86,7 @@ public class ThreeVector {
 				
 				return ang;
 				
-			}		
+				}		
 		
 		// writing in string method in order to represent ThreeVectors in a suitable format when printing to console
 		public String toString() {
@@ -102,28 +102,28 @@ public class ThreeVector {
 	// writing scalar product method for calculating scalar product of two vectors
 			public double scalarProduct(ThreeVector v2) {
 				
-				return scalarProduct(this,v2);
+			return scalarProduct(this,v2);
 			}
 			
 	// writing scalar product method for calculating scalar product of two vectors
 			public ThreeVector vectorProduct(ThreeVector v2) {
 				
-				return vectorProduct(this,v2);
-						}
+			return vectorProduct(this,v2);
+			}
 			
 	// writing add method for adding two three vectors
 			public ThreeVector add(ThreeVector v2) {
-				
-				return add(this,v2);
+			
+			return add(this,v2);
 				
 			}
 			
 	// writing angle method for calculating the angle between two vectors
-			public double angle(ThreeVector v2) {
+	//		public double angle(ThreeVector v2) {
+		//		
+		//		return angle(this,v2);
 				
-				return angle(this,v2);
-				
-			}
+		//	}
 			
 
 				

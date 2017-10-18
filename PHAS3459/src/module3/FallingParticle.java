@@ -15,7 +15,13 @@ public class FallingParticle {
 	public static final double g = 9.81; //free fall due to gravity
 	
 	// constructor, used for later instantiations
-			public FallingParticle(double m,double d) {
+			public FallingParticle(double m,double d) throws Exception {
+				if (m <=0 ) {
+					throw new Exception ("The particle must have a positive, non-zero mass in order to be physical.");
+				}
+				if (d < 0) {
+					throw new Exception ("The drag coefficent cannot be negative.");
+			}
 				this.m = m;
 				this.d = d;
 							
@@ -26,7 +32,7 @@ public class FallingParticle {
 	// set height
 	public static void setH(double set_h) throws Exception {
 		if (set_h < 0) {
-			System.out.println("The particle cannot have a negative initial height, as it is measured upwards from the base.");
+			throw new Exception("The particle cannot have a negative initial height, as it is measured upwards from the base.");
 		}
 		h = set_h;	
 		}
@@ -53,9 +59,6 @@ public class FallingParticle {
 		
 	// adding time step method
 	public static void doTimeStep(FallingParticle particle, double deltaT) throws Exception {
-		if (m <=0 ) {
-			System.out.println("The particle must have a positive, non-zero mass in order to be physical.");
-		}
 		double a = (d*v*v/m) - g; // calculate acceleration
 		// update position and velocity of particle after time deltaT
 		v = v + a*deltaT;
@@ -64,7 +67,7 @@ public class FallingParticle {
 	
 	public static double drop(FallingParticle particle, double deltaT) throws Exception {
 		if (z < 0) {
-			System.out.println("The particle cannot have a negative vertical position, as it is measured upwards from the ground.");
+			throw new Exception("The particle cannot have a negative vertical position, as it is measured upwards from the ground.");
 		}
 		z = h;
 		t = 0; // initialise elapsed time
