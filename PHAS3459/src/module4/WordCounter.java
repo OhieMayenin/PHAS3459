@@ -26,6 +26,7 @@ public class WordCounter {
 		Scanner s = new Scanner(dataAsBR);
 		int sum = 0;
 		while (s.hasNext()) {
+			s.next();
 			sum = sum + 1;	
 		}
 
