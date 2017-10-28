@@ -9,6 +9,7 @@ public class NumericalReader {
 	double sumOfValues;
 	int nValues;
 	File outputfile;
+	String directory;
 
 	public static String getStringFromKeyboard() throws IOException{
 		InputStreamReader input = new InputStreamReader(System.in);
@@ -42,7 +43,7 @@ public class NumericalReader {
 	// method creates file
 	// initialises minValue, maxValue, nValues & sumOfValues
 	void analysisStart(String fileName) throws IOException {
-		String directory = getStringFromKeyboard();
+		// String directory = getStringFromKeyboard();
 		String file = ("N:" + File.separator + directory + File.separator + fileName);
 		outputfile = new File(fileName);
 
@@ -63,17 +64,16 @@ public class NumericalReader {
 
 	void analyseData(String line) throws IOException{
 		if (line.isEmpty() || Character.isLetter(line.charAt(0))) {
-			return; 
+			return;
 		}
-
+		
 		Scanner s = new Scanner(line);
-		FileWriter fw = new FileWriter(outputfile,true);
+		FileWriter fw = new FileWriter(this.outputfile);
 		BufferedWriter bw = new BufferedWriter(fw);
 		PrintWriter pw = new PrintWriter(bw);
 
 		while (s.hasNext()) {
-			if (line.isEmpty() ==false || Character.isLetter(line.charAt(0))==false) {
-
+			
 				double num = Double.parseDouble(s.next());
 				System.out.println(num);
 				pw.println(num);
@@ -87,10 +87,10 @@ public class NumericalReader {
 					maxValue = num;
 				}			
 			}
-		}
+		
 		pw.close();
 		s.close();
-	}
+}
 
 	void analysisEnd() {
 		System.out.println("The minimum value is: "+minValue);
@@ -129,9 +129,6 @@ public class NumericalReader {
 				nr.analyseData(line); // analyse line
 			}
 
-			nr.analyseData(line);
-
-
 			nr.analysisEnd(); // end analysis and print values
 			System.out.println("URL 1 has been successfully analysed.");
 
@@ -148,22 +145,22 @@ public class NumericalReader {
 		// trying conversion of second URL
 		try { 
 			String URL2 = "http://www.hep.ucl.ac.uk/undergrad/3459/data/module4/module4_data2.txt";
-			NumericalReader nr =  new NumericalReader();
+			NumericalReader nr2 =  new NumericalReader();
 			String file2 = "numbers2.txt";
-			nr.analysisStart(file2); // creating file1 in specified directory	
+			nr2.analysisStart(file2); // creating file1 in specified directory	
 
 			// wrapping URL in BufferedReader
-			BufferedReader br2 = nr.brFromURL(URL2);
+			BufferedReader br2 = nr2.brFromURL(URL2);
 
 			// analysing each line of URL file at a time
 			while ((line = br2.readLine()) != null) {
-				nr.analyseData(line); // analyse line
+				nr2.analyseData(line); // analyse line
 			}
 
-			nr.analyseData(line);
+			nr2.analyseData(line);
 
 
-			nr.analysisEnd(); // end analysis and print values
+			nr2.analysisEnd(); // end analysis and print values
 			System.out.println("URL 2 has been successfully analysed.");
 
 			// end of URL 1 analysis
