@@ -11,7 +11,7 @@ public class NumericalReader {
 	File outputfile;
 	String directory;
 
-	public static String getStringFromKeyboard() throws IOException{
+	public static String getStringFromKeyboard() {
 		InputStreamReader input = new InputStreamReader(System.in);
 		BufferedReader b = new BufferedReader(input);
 		System.out.println("Please specify the directory where the data is to be stored.");
@@ -43,11 +43,11 @@ public class NumericalReader {
 	// method creates file
 	// initialises minValue, maxValue, nValues & sumOfValues
 	void analysisStart(String fileName) throws IOException {
-		// String directory = getStringFromKeyboard();
-		String file = ("N:" + File.separator + directory + File.separator + fileName);
-		outputfile = new File(fileName);
+		//String file = ("N:" + File.separator + directory + File.separator + fileName);
+		File outputfile = new File(fileName);
+		FileWriter fw = new FileWriter(outputfile);
 
-		// deleting exisiting file, creating new file
+		// deleting existing file, creating new file
 		if (outputfile.exists()) {
 			outputfile.delete();
 			outputfile.createNewFile();
@@ -106,20 +106,20 @@ public class NumericalReader {
 		String line = "";
 
 		// set directory that both files will be saved in
-		try{ String directory = getStringFromKeyboard(); // user input directory
+		String directory = getStringFromKeyboard(); // user input directory
 		System.out.println("Directory where data is to be stored: "+directory);
-		}
 
-		catch (IOException e) {}
-
+		try {
 		// First URL
 
 		// trying conversion of first URL
-		try { 
+
 			String URL1 = "http://www.hep.ucl.ac.uk/undergrad/3459/data/module4/module4_data1.txt";
-			NumericalReader nr =  new NumericalReader();
 			String file1 = "numbers1.txt";
-			nr.analysisStart(file1); // creating file1 in specified directory	
+			NumericalReader nr =  new NumericalReader();
+			String fileName = ("N:" + File.separator + directory + File.separator + file1);
+			System.out.println("Analysing URL 1");
+			nr.analysisStart(fileName); // creating file1 in specified directory	
 
 			// wrapping URL in BufferedReader
 			BufferedReader br1 = nr.brFromURL(URL1);
@@ -131,10 +131,9 @@ public class NumericalReader {
 
 			nr.analysisEnd(); // end analysis and print values
 			System.out.println("URL 1 has been successfully analysed.");
-
+			
 			// end of URL 1 analysis
-
-		}
+			}
 
 		catch (IOException e) {
 			e.printStackTrace();
@@ -145,9 +144,11 @@ public class NumericalReader {
 		// trying conversion of second URL
 		try { 
 			String URL2 = "http://www.hep.ucl.ac.uk/undergrad/3459/data/module4/module4_data2.txt";
-			NumericalReader nr2 =  new NumericalReader();
 			String file2 = "numbers2.txt";
-			nr2.analysisStart(file2); // creating file1 in specified directory	
+			NumericalReader nr2 =  new NumericalReader();
+			String fileName2 = ("N:" + File.separator + directory + File.separator + file2);
+			System.out.println("Analysing URL 2");
+			nr2.analysisStart(fileName2); // creating file1 in specified directory	
 
 			// wrapping URL in BufferedReader
 			BufferedReader br2 = nr2.brFromURL(URL2);
@@ -159,11 +160,10 @@ public class NumericalReader {
 
 			nr2.analyseData(line);
 
-
 			nr2.analysisEnd(); // end analysis and print values
 			System.out.println("URL 2 has been successfully analysed.");
 
-			// end of URL 1 analysis
+			// end of URL 2 analysis
 
 		}
 
