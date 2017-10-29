@@ -9,7 +9,6 @@ public class NumericalReader {
 	double sumOfValues;
 	int nValues;
 	File outputfile;
-	String directory;
 
 	public static String getStringFromKeyboard() {
 		InputStreamReader input = new InputStreamReader(System.in);
@@ -44,8 +43,8 @@ public class NumericalReader {
 	// initialises minValue, maxValue, nValues & sumOfValues
 	void analysisStart(String fileName) throws IOException {
 		//String file = ("N:" + File.separator + directory + File.separator + fileName);
-		File outputfile = new File(fileName);
-		FileWriter fw = new FileWriter(outputfile);
+		outputfile = new File(fileName);
+		
 
 		// deleting existing file, creating new file
 		if (outputfile.exists()) {
@@ -68,10 +67,11 @@ public class NumericalReader {
 		}
 		
 		Scanner s = new Scanner(line);
-		FileWriter fw = new FileWriter(this.outputfile);
+		FileWriter fw = new FileWriter(outputfile,true);
 		BufferedWriter bw = new BufferedWriter(fw);
 		PrintWriter pw = new PrintWriter(bw);
 
+		
 		while (s.hasNext()) {
 			
 				double num = Double.parseDouble(s.next());
@@ -90,6 +90,8 @@ public class NumericalReader {
 		
 		pw.close();
 		s.close();
+		fw.close();
+		
 }
 
 	void analysisEnd() {
@@ -120,7 +122,7 @@ public class NumericalReader {
 			String fileName = ("N:" + File.separator + directory + File.separator + file1);
 			System.out.println("Analysing URL 1");
 			nr.analysisStart(fileName); // creating file1 in specified directory	
-
+			
 			// wrapping URL in BufferedReader
 			BufferedReader br1 = nr.brFromURL(URL1);
 
@@ -131,7 +133,7 @@ public class NumericalReader {
 
 			nr.analysisEnd(); // end analysis and print values
 			System.out.println("URL 1 has been successfully analysed.");
-			
+			System.out.println();
 			// end of URL 1 analysis
 			}
 
