@@ -3,25 +3,40 @@ package module5;
 public class TestSquareMatrix {
 
 	public static void main(String[] args) {
-		 double [][] x = { {1.1,2.2,3.3,4.4},
-		 		   {5.5,6.6,7.7,8.8},
-		 		   {9.9,8.8,7.7,6.6},
-		 		   {5.5,4.4,3.3,2.2} } ;
-		try{ SquareMatrix A = new SquareMatrix (x);
-		System.out.println(A);
+		 double [][] a = { {1 , 2 , 0},
+		 		   		   {0 , 2 , 0},
+		 		   		   {-2 , 0 , 1} } ;
+		
+		 double [][] b = { {2 , 1 , 0},
+		 		   		   {0 , 1 , 0},
+		 		   		   {-1 , 0 , 1} } ;
+		 
+		 double [][] c = { {4 , 3},
+		 		   		   {3 , 2} } ;
+		 
+		 double [][] d = { {-2 , 3},
+		 		   		   {3 , -4} } ;
+		 
+		try { SquareMatrix A = new SquareMatrix (a);
+		System.out.println("Square Matrix A: \n " +A + "\n");
 		}
 		catch (Exception e) {}
 		
-//		SquareMatrix B = new SquareMatrix ();
-//		
-//		SquareMatrix C = new SquareMatrix ();
-//		
-//		SquareMatrix D = new SquareMatrix ();
+		try { SquareMatrix B = new SquareMatrix (b);
+		System.out.println("Square Matrix B: \n " +B+ "\n");
+		}
+		catch (Exception e) {}
 		
-	
-	 
-	 System.out.println(x);
-
+		try { SquareMatrix C = new SquareMatrix (c);
+		System.out.println("Square Matrix C: \n " +C+ "\n");
+		}
+		catch (Exception e) {}
+		
+		try { SquareMatrix D = new SquareMatrix (d);
+		System.out.println("Square Matrix D: \n " +D+ "\n");
+		}
+		catch (Exception e) {}
+		
 	}
 
 }
