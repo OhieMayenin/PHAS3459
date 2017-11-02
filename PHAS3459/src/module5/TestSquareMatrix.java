@@ -3,10 +3,10 @@ package module5;
 public class TestSquareMatrix {
 
 	public static void main(String[] args) {
-		SquareMatrix A;
-		SquareMatrix B;
-		SquareMatrix C;
-		SquareMatrix D;
+		SquareMatrix A = null;
+		SquareMatrix B = null;
+		SquareMatrix C = null;
+		SquareMatrix D = null;
 		
 		 double [][] a = { {1 , 2 , 0},
 		 		   		   {0 , 2 , 0},
@@ -44,6 +44,39 @@ public class TestSquareMatrix {
 		System.out.println(sumAB);
 		}
 		catch (Exception e) {}
+		
+	
+		try {
+		SquareMatrix subtractAB = SquareMatrix.subtract(A, B);
+		System.out.println(subtractAB);
 		}
+		catch (Exception e) {}
+		
+	
+		try {
+		SquareMatrix productAB = SquareMatrix.multiply(A, B);
+		System.out.println("A*B = " +productAB + "\n");
+		
+		SquareMatrix productBA = SquareMatrix.multiply(B, A);
+		System.out.println("B*A  = " +productBA + "\n");
+		
+		SquareMatrix commutatorAB = SquareMatrix.subtract(productAB, productBA);
+		System.out.println("Commutator [A,B] = " +commutatorAB + "\n");
+		}
+		catch (Exception e) {}
+		
+		try {
+			SquareMatrix productCD = SquareMatrix.multiply(C, D);
+			// System.out.println("C*D  = " +productCD);
+			int size = C.numOfRows;
+			SquareMatrix identity = SquareMatrix.unitMatrix(size);
+			boolean equalsIdentity = identity.equals(productCD);
+			System.out.println("The product of C & D is equal to the identity matrix. This statment is: " +equalsIdentity + "\n");
+		}
+		catch (Exception e) {}
+		
+		
+		
 
+}
 }

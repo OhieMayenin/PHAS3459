@@ -44,9 +44,9 @@ public class SquareMatrix {
 	}
 
 
-	public SquareMatrix IdentityMatrix (int size) {
+	public static SquareMatrix unitMatrix (int size) {
 		int element;
-		SquareMatrix id_matrix;
+		SquareMatrix id_matrix = null;
 		
 		double [][] id = new double [size][size];
 		for (element = 0; element < size; element++) {
@@ -58,6 +58,7 @@ public class SquareMatrix {
 		}
 
 		catch (Exception e) {}
+		
 		return id_matrix;
 	}
 
@@ -117,12 +118,25 @@ public static SquareMatrix subtract (SquareMatrix sm1, SquareMatrix sm2) throws 
 
 
 
-public static SquareMatrix multiply(SquareMatrix sm1, SquareMatrix sm2) throws Exception {}
+public static SquareMatrix multiply(SquareMatrix sm1, SquareMatrix sm2) throws Exception {
 	if (sm1.numOfRows != sm2.numOfColumns || sm1.numOfColumns != sm2.numOfRows) {
 		throw new Exception("ERROR: The matrices inputted cannot be multiplied due to their sizes."
 		+ " The number of columns of one must equal the number of rows of the other, or vice versa.");
 	}
-	double [][] productMatrix = new double [sm1.numOfRows][sm1.numOfColumns];
+	double [][] productMatrix = new double [sm1.numOfRows][sm2.numOfColumns];
 	int i = 0;
 	int j = 0;
+	
+	for (i = 0; i < sm1.numOfColumns; i++) {
+		for (j = 0; j < sm1.numOfColumns; j++) {
+			for (int k = 0; k < sm1.numOfColumns; k++)
+			productMatrix[i][j] += sm1.elements[i][k] * sm2.elements[k][j]; 
+		}
+	}
+	
+	SquareMatrix prodSqMatrix = new SquareMatrix (productMatrix);
+	return prodSqMatrix;
+		
+	}
 }
+
