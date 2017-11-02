@@ -63,7 +63,7 @@ public class TestSquareMatrix {
 		SquareMatrix commutatorAB = SquareMatrix.subtract(productAB, productBA);
 		System.out.println("Commutator [A,B] = " +commutatorAB + "\n");
 		}
-		catch (Exception e) {}
+		catch (Exception e) {e.printStackTrace();}
 		
 		try {
 			SquareMatrix productCD = SquareMatrix.multiply(C, D);
@@ -73,7 +73,7 @@ public class TestSquareMatrix {
 			boolean equalsIdentity = identity.equals(productCD);
 			System.out.println("The product of C & D is equal to the identity matrix. This statment is: " +equalsIdentity + "\n");
 		}
-		catch (Exception e) {}
+		catch (Exception e) {e.printStackTrace();}
 		
 		
 		
