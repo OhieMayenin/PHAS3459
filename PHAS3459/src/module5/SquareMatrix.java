@@ -69,8 +69,10 @@ public class SquareMatrix {
 		else if ((obj == null) || obj.getClass() != this.getClass()) {ans = false;}
 		return ans;
 	}
+	
 
 
+	
 	public static SquareMatrix add(SquareMatrix sm1, SquareMatrix sm2) throws Exception {
 		if ((sm1.numOfRows != sm2.numOfRows) || (sm1.numOfColumns != sm2.numOfColumns)) {
 			throw new Exception("ERROR: Cannot add square matrices of different sizes.");
@@ -81,20 +83,17 @@ public class SquareMatrix {
 		int j = 0;
 		
 		for (i = 0; i < sm1.numOfRows; i++ ) {
-			sumMatrix[i][j] = sm1.elements[i][j] + sm2.elements[i][j];
-			
 			for (j = 0; j < sm1.numOfColumns; j++) {
-				sumMatrix[i][j] = sm1.elements[i][j] + sm2.elements[i][j];
+			sumMatrix[i][j] = sm1.elements[i][j] + sm2.elements[i][j];			
 			}
-			}
-
+		}
 		SquareMatrix sumSqMatrix = new SquareMatrix (sumMatrix);
 		return sumSqMatrix;
+		
 	}
+	
 
-
-
-
+	
 public static SquareMatrix subtract (SquareMatrix sm1, SquareMatrix sm2) throws Exception {
 	if ((sm1.numOfRows != sm2.numOfRows) || (sm1.numOfColumns != sm2.numOfColumns)) {
 		throw new Exception("ERROR: Cannot add square matrices of different sizes.");
@@ -105,13 +104,10 @@ public static SquareMatrix subtract (SquareMatrix sm1, SquareMatrix sm2) throws 
 	int j = 0;
 	
 	for (i = 0; i < sm1.numOfRows; i++ ) {
-		subtractMatrix[i][j] = sm1.elements[i][j] - sm2.elements[i][j];
-		
 		for (j = 0; j < sm1.numOfColumns; j++) {
-			subtractMatrix[i][j] = sm1.elements[i][j] - sm2.elements[i][j];
-		}
-		}
-
+		subtractMatrix[i][j] = sm1.elements[i][j] - sm2.elements[i][j];
+		}	
+}
 	SquareMatrix subtractSqMatrix = new SquareMatrix (subtractMatrix);
 	return subtractSqMatrix;
 }

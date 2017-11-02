@@ -41,14 +41,14 @@ public class TestSquareMatrix {
 		// calculating sums
 		try {
 		SquareMatrix sumAB = SquareMatrix.add(A, B);
-		System.out.println(sumAB);
+		System.out.println("The sum of A & B:" +sumAB);
 		}
 		catch (Exception e) {}
 		
 	
 		try {
 		SquareMatrix subtractAB = SquareMatrix.subtract(A, B);
-		System.out.println(subtractAB);
+		System.out.println("Subtracting B from A: " +subtractAB);
 		}
 		catch (Exception e) {}
 		
