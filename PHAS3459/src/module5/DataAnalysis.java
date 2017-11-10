@@ -21,7 +21,7 @@ public class DataAnalysis {
 		InputStreamReader isr_url = new InputStreamReader(is_url); // wrap input stream
 		BufferedReader url = new BufferedReader(isr_url); // reads large chunk of data into memory
 		Scanner s = new Scanner(url);
-		
+
 		while (s.hasNext()) {
 			double num = Double.parseDouble(s.next()); // parse string from resource as double
 			data.add(num);
@@ -30,31 +30,44 @@ public class DataAnalysis {
 				dataPoints.add(point);
 				data = new ArrayList<Double>(); // reset double list for next dataPoint
 			}
-			//System.out.println(num); // print this double
 		}
 		return dataPoints;
 	}
-	
-	public static double goodnessOfFit(Theory nVal, ArrayList<DataPoint> dataPoints){
-		
-		
-		double chiSq=0;
-		return chiSq;
-		
+
+	public static double goodnessOfFit(Theory theoretical, ArrayList<DataPoint> dataPoints){
+		int i;
+		double sum_chiSq = 0;
+		for (i = 0; i < dataPoints.size(); i++ ){
+			DataPoint element = dataPoints.get(i);
+			double chiSqPoint = (element.getY() - theoretical)*(element.getY() - theoretical)/ (element.getEy()*element.getEy());
+			sum_chiSq = sum_chiSq + chiSqPoint;
+		}
+
+		return sum_chiSq;
+
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 	public static void main(String[] args) {
 		String urlName = "http://www.hep.ucl.ac.uk/undergrad/3459/data/module5/module5-xy.txt";
 		try {
 			ArrayList<DataPoint> dataPoints = dataFromURL(urlName);
 			System.out.println(dataPoints);
+
+			Theory squaredFit = new Theory(2);
+			Theory power4Fit = new Theory(4);
+
+			double chiSqx2 = goodnessOfFit(squaredFit,dataPoints);
+			System.out.println(chiSqx2);
+
+			double chiSqx4 = goodnessOfFit(power4Fit, dataPoints);
+			System.out.println(chiSqx4);
 		}
-		catch(IOException e){System.out.println("ERROR: IOException caught.");}
-	
+
+		catch(IOException e){e.printStackTrace();}
 	}
 
 }

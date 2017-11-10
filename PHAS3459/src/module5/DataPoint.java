@@ -22,17 +22,17 @@ public class DataPoint {
 		}
 		
 	public double getX () {
-		return x;
+		return this.x;
 	}
 	
 	
 	public double getY () {
-		return y;
+		return this.y;
 	}
 	
 	
 	public double getEy () {
-		return ey;
+		return this.ey;
 	}
 		
 }
