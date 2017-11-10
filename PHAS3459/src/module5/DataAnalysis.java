@@ -29,6 +29,14 @@ public class DataAnalysis {
 		return data;
 	}
 	
+	public static double goodnessOfFit(Theory nVal, ArrayList<DataPoint> dataPoints){
+		
+		
+		double chiSq;
+		return chiSq;
+		
+	}
+	
 	
 	
 	
