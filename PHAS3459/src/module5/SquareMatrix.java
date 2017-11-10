@@ -2,7 +2,6 @@ package module5;
 
 import java.lang.reflect.Array;
 
-import module2.ThreeVector;
 
 public class SquareMatrix {
 

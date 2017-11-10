@@ -16,7 +16,11 @@ public class DataPoint {
 		// THIS CONSTRUCTOR IS FOR ONE DATA POINT ONLY?
 		// IF NOT, THEN CHANGE TO DOUBLE[]
 		
-	
+		public String toString () {
+			String str = "("+ this.x + "," + this.y + "," + this.ey + ")";
+			return str;
+		}
+		
 	public double getX () {
 		return x;
 	}
