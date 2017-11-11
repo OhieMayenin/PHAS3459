@@ -39,7 +39,7 @@ public class DataAnalysis {
 		double sum_chiSq = 0;
 		for (i = 0; i < dataPoints.size(); i++ ){
 			DataPoint element = dataPoints.get(i);
-			double chiSqPoint = (element.getY() - theoretical)*(element.getY() - theoretical)/ (element.getEy()*element.getEy());
+			double chiSqPoint = (element.getY() - theoretical.y(element.getX()))*(element.getY() - theoretical.y(element.getX()))/ (element.getEy()*element.getEy());
 			sum_chiSq = sum_chiSq + chiSqPoint;
 		}
 
@@ -61,10 +61,10 @@ public class DataAnalysis {
 			Theory power4Fit = new Theory(4);
 
 			double chiSqx2 = goodnessOfFit(squaredFit,dataPoints);
-			System.out.println(chiSqx2);
+			System.out.println("Chi Sq for x^2: "+chiSqx2);
 
 			double chiSqx4 = goodnessOfFit(power4Fit, dataPoints);
-			System.out.println(chiSqx4);
+			System.out.println("Chi Sq for x^4: "+chiSqx4);
 		}
 
 		catch(IOException e){e.printStackTrace();}

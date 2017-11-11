@@ -71,7 +71,7 @@ public class Minerals {
 		hashMapFromMassURL(urlMass);
 		hashMapFromLocationURL(urlLocation);
 		
-		double largestMass = masses.;
+		double largestMass;
 		}
 		catch (IOException e){e.printStackTrace();}
 	}
