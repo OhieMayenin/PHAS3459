@@ -4,7 +4,7 @@
 
 package mockExam;
 
-import java.util.ArrayList;
+import java.util.ArrayList; // import classes
 import java.util.Scanner;
 
 public class PlayerRecord {
@@ -34,23 +34,22 @@ public class PlayerRecord {
 	 * <team, pos, G, AB, R, H, twoB, threeB, HR, RBI, AVG, OBP, SLG, 0PS>
 	 */
 	public PlayerRecord (ArrayList<String> input) {
-		//this.keyName=  input.get(0);
-		this.team = input.get(0);
-		this.pos = input.get(1);
-		this.G = input.get(2);
-		this.AB = input.get(3);
-		this.R = input.get(4);
-		this.H = input.get(5);
-		this.twoB = input.get(6);
-		this.threeB = input.get(7);
-		this.HR = input.get(8);
-		this.RBI = input.get(9);
-		this.AVG = input.get(10);
-		this.OBP  = input.get(11);
-		this.SLG = input.get(12);
-		this.OPS = input.get(13);
-		// this string array is for referencing the order of the elements in the following for loop
-		// for loop sets all data variables to the input ArrayList values
+		this.keyName=  input.get(0);
+		this.team = input.get(1);
+		this.pos = input.get(2);
+		this.G = input.get(3);
+		this.AB = input.get(4);
+		this.R = input.get(5);
+		this.H = input.get(6);
+		this.twoB = input.get(7);
+		this.threeB = input.get(8);
+		this.HR = input.get(9);
+		this.RBI = input.get(10);
+		this.AVG = input.get(11);
+		this.OBP  = input.get(12);
+		this.SLG = input.get(13);
+		this.OPS = input.get(14);
+		// this sets all the values defined above to the elements of the input ArrayList
 	}
 
 
@@ -103,7 +102,7 @@ public class PlayerRecord {
 		String strFourth = "Runs Batted In: "+ RBI +", Batting Average: " +AVG + ", On-Base Percentage: " +OBP;
 		String strFifth = "Slugging Percentage: "+SLG + ", On-Base Plus Slugging Figure: " + OPS;
 
-		String strAll = "+\n" +strFirst + "\n" + strSecond +"\n" + strThird + "\n" + strFourth+ "\n"+ strFifth;
+		String strAll = "\n" +"\n" +strFirst + "\n" + strSecond +"\n" + strThird + "\n" + strFourth+ "\n"+ strFifth;
 
 		return strAll;
 	}
@@ -156,6 +155,14 @@ public class PlayerRecord {
 
 	public String getOBP() {
 		return this.OBP;
+	}
+	
+	public String getSLG() {
+		return this.SLG;
+	}
+	
+	public String getOPS() {
+		return this.OPS;
 	}
 
 
