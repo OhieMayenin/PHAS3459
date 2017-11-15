@@ -20,7 +20,7 @@ import java.util.Map.Entry;
 public class LinkReader {
 
 
-	public static HashMap<String,ArrayList<PlayerRecord>> readURL(String urlName) throws IOException {
+	public static ArrayList<PlayerRecord> readURL(String urlName) throws IOException {
 
 		URL u = new URL(urlName); // convert string to URL
 		InputStream is_url = u.openStream(); // inputs URL as bytes
@@ -30,62 +30,63 @@ public class LinkReader {
 
 		String line = "";
 		String keyTeamName ="";
-		String element;
+		PlayerRecord playerData;
 		int i = 0;
-		HashMap<String,ArrayList<PlayerRecord>> teamDatabase = new HashMap<String,ArrayList<PlayerRecord>>();
-		ArrayList<String> data = new ArrayList<String>();
+
 		ArrayList<PlayerRecord> allPlayers = new ArrayList<PlayerRecord>();
 
-		//Scanner s = new Scanner(url).useDelimiter("\t"); // uses tab as delimiter for scanner
-
 		while ((line = url.readLine()) != null) {
-			//System.out.println(line);
-			Scanner s = new Scanner(line).useDelimiter("\t"); // uses tab as delimiter for scanner
-
 			if (line.contains(".")) {
-				// if loop skips any lines without actual data i.e. the first two
-
-
-				for (i = 0; i < 12; i++ ) {
-					element = s.next();
-					//System.out.println(element);
-					data.add(element);			
-				}
-				keyTeamName = data.get(1);
-				System.out.println(keyTeamName);
-
-				PlayerRecord playerData = new PlayerRecord(data);
-
-
-
+				// if loop skips any lines without numerical data i.e. the first two
+				playerData = PlayerRecord.parseLine(line);
 				allPlayers.add(playerData);
+
 			}
+		}
+
+		return allPlayers;
+	}
+	
+	/*
+	 * method which takes ArrayList input of all PlayerRecord objects for all players
+	 * sorts them into ArrayLists each representing a different team
+	 * adds these team ArrayLists to HashMap, where team name is the key
+	 */
+	public static HashMap<String,ArrayList<PlayerRecord>> sortIntoHashMap(ArrayList<PlayerRecord> allPlayers) throws IOException {
+		HashMap<String,ArrayList<PlayerRecord>> teamDatabase = new HashMap<String,ArrayList<PlayerRecord>>();
+
+		// Loop over complete Batter list
+		for (PlayerRecord player : allPlayers) {
+
+			// Retrieve team for that Batter
+			String keyTeamName = player.getTeam();
+
+			// Extract Batter list from HashMap using this team
+			ArrayList<PlayerRecord> thisPlayerList = teamDatabase.get(keyTeamName);
+
+			// If this list is empty, create a new ArrayList of Batters
+			if (thisPlayerList == null) {
+				teamDatabase.put(keyTeamName, new ArrayList<PlayerRecord>());
 			}
 
-				if (teamDatabase.get(keyTeamName) ==null) {
-					ArrayList<PlayerRecord> teamPlayers = new ArrayList<PlayerRecord>();
+			// Add current Batter to list of Batters for that team
+			teamDatabase.get(keyTeamName).add(player);
 
-					for (i = 0; i < allPlayers.size(); i++) {
-						if(allPlayers.get(i).getTeam() == keyTeamName) {
-							teamPlayers.add(allPlayers.get(i));
-						}
-					}
-					System.out.println(teamPlayers);
-					teamDatabase.put(keyTeamName, teamPlayers);
-				}
+		}
 		
 		return teamDatabase;
 	}
-
 
 	public static void main(String[] args) {
 		String urlName = "http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/MLB2001Hitting.txt";
 
 		try {
-			HashMap<String, ArrayList<PlayerRecord>> playerDatabase = readURL(urlName);
-			System.out.println(playerDatabase);
+			ArrayList<PlayerRecord> allPlayers = readURL(urlName);
+			System.out.println(allPlayers);
+			HashMap<String, ArrayList<PlayerRecord>> teamDatabase = sortIntoHashMap(allPlayers); 
+			
+		}
 
-					}
 		catch (IOException e) {e.printStackTrace();}
 
 
