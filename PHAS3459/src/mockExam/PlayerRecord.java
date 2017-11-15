@@ -31,15 +31,23 @@ public class PlayerRecord {
 	 * playerData will contain data elements in the following order:
 	 * <team, pos, G, AB, R, H, twoB, threeB, HR, RBI, AVG, OBP>
 	 */
-	public PlayerRecord (ArrayList<String> playerData) {
-		
-		int i = 0; // initialise loop counter
-		String [] order = {this.team, this.pos, this.G, this.AB, this.R, this.H, this.twoB, this.threeB, this.HR, this.RBI, this.AVG, this.OBP}; 
+	public PlayerRecord (ArrayList<String> input) {
+		//this.keyName=  input.get(0);
+		this.team = input.get(0);
+		this.pos = input.get(1);
+		this.G = input.get(2);
+		this.AB = input.get(3);
+		this.R = input.get(4);
+		this.H = input.get(5);
+		this.twoB = input.get(6);
+		this.threeB = input.get(7);
+		this.HR = input.get(8);
+		this.RBI = input.get(9);
+		this.AVG = input.get(10);
+		this.OBP  = input.get(11);
 		// this string array is for referencing the order of the elements in the following for loop
 		// for loop sets all data variables to the input ArrayList values
-		for (i = 0; i < order.length; i++ ) {
-		order[i] = playerData.get(i);
-		}	
+			
 	}
 	
 	

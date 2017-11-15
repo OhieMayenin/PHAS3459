@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Scanner;
 import java.util.HashMap;
@@ -33,34 +34,60 @@ public class LinkReader {
 		int i = 0;
 		HashMap<String,PlayerRecord> playerDatabase = new HashMap<String,PlayerRecord>();
 		ArrayList<String> data = new ArrayList<String>();
+		//Scanner s = new Scanner(url).useDelimiter("\t"); // uses tab as delimiter for scanner
 
-		while ((line=url.readLine()) != null) {
+		while ((line = url.readLine()) != null) {
 			//System.out.println(line);
 			Scanner s = new Scanner(line).useDelimiter("\t"); // uses tab as delimiter for scanner
 
-			element = s.next();
-			data.add(element);
-			if (data.size() > 12) {
-				PlayerRecord playerRecord = new PlayerRecord(data);
-				keyName = data.get(0); 
-				playerDatabase.put(keyName, playerRecord);
+			if (line.contains(".")) {
+				// if loop skips any lines without actual data i.e. the first two
+				keyName = s.next(); 
+
+				for (i = 0; i < 12; i++ ) {
+					element = s.next();
+					//System.out.println(element);
+					data.add(element);			
+				}
+
+				PlayerRecord playerData = new PlayerRecord(data);
+				playerDatabase.put(keyName, playerData);
 				data = new ArrayList<String>();
-				s.close();
+
 			}
 		}
 
-
-		PlayerRecord playerRecord = new PlayerRecord(data);
-
-		return playerDatabase;		
+		return playerDatabase;
 	}
+
 
 	public static void main(String[] args) {
 		String urlName = "http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/MLB2001Hitting.txt";
 
 		try {
 			HashMap<String, PlayerRecord> playerDatabase = readURL(urlName);
-			System.out.println(playerDatabase);
+			//System.out.println(playerDatabase);
+			Collection <PlayerRecord> values = playerDatabase.values();
+			
+			// tests
+			PlayerRecord rowandA = playerDatabase.get("Rowand, A");
+			System.out.println(rowandA.getPos());
+			
+						
+			
+			// number of players stored in HashMap
+			int numberOfPlayers = playerDatabase.values().size();
+			System.out.println("The number of players stored in the HashMap database: "+numberOfPlayers);
+			
+			
+			// scan for most home runs
+			int i = 0;
+			for (i = 0; i < playerDatabase.values().size(); i++) {
+				Collection<PlayerRecord> vals = playerDatabase.values();
+				
+				
+				
+			}
 		}
 		catch (IOException e) {e.printStackTrace();}
 
