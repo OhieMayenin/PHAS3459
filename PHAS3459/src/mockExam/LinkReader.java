@@ -20,7 +20,7 @@ import java.util.Map.Entry;
 public class LinkReader {
 
 
-	public static HashMap<String,PlayerRecord> readURL(String urlName) throws IOException {
+	public static HashMap<String,ArrayList<PlayerRecord>> readURL(String urlName) throws IOException {
 
 		URL u = new URL(urlName); // convert string to URL
 		InputStream is_url = u.openStream(); // inputs URL as bytes
@@ -29,11 +29,13 @@ public class LinkReader {
 
 
 		String line = "";
-		String keyName;
+		String keyTeamName ="";
 		String element;
 		int i = 0;
-		HashMap<String,PlayerRecord> playerDatabase = new HashMap<String,PlayerRecord>();
+		HashMap<String,ArrayList<PlayerRecord>> teamDatabase = new HashMap<String,ArrayList<PlayerRecord>>();
 		ArrayList<String> data = new ArrayList<String>();
+		ArrayList<PlayerRecord> allPlayers = new ArrayList<PlayerRecord>();
+
 		//Scanner s = new Scanner(url).useDelimiter("\t"); // uses tab as delimiter for scanner
 
 		while ((line = url.readLine()) != null) {
@@ -42,22 +44,37 @@ public class LinkReader {
 
 			if (line.contains(".")) {
 				// if loop skips any lines without actual data i.e. the first two
-				keyName = s.next(); 
+
 
 				for (i = 0; i < 12; i++ ) {
 					element = s.next();
 					//System.out.println(element);
 					data.add(element);			
 				}
+				keyTeamName = data.get(1);
+				System.out.println(keyTeamName);
 
 				PlayerRecord playerData = new PlayerRecord(data);
-				playerDatabase.put(keyName, playerData);
-				data = new ArrayList<String>();
 
+
+
+				allPlayers.add(playerData);
 			}
-		}
+			}
 
-		return playerDatabase;
+				if (teamDatabase.get(keyTeamName) ==null) {
+					ArrayList<PlayerRecord> teamPlayers = new ArrayList<PlayerRecord>();
+
+					for (i = 0; i < allPlayers.size(); i++) {
+						if(allPlayers.get(i).getTeam() == keyTeamName) {
+							teamPlayers.add(allPlayers.get(i));
+						}
+					}
+					System.out.println(teamPlayers);
+					teamDatabase.put(keyTeamName, teamPlayers);
+				}
+		
+		return teamDatabase;
 	}
 
 
@@ -65,33 +82,12 @@ public class LinkReader {
 		String urlName = "http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/MLB2001Hitting.txt";
 
 		try {
-			HashMap<String, PlayerRecord> playerDatabase = readURL(urlName);
-			//System.out.println(playerDatabase);
-			Collection <PlayerRecord> values = playerDatabase.values();
-			
-			// tests
-			PlayerRecord rowandA = playerDatabase.get("Rowand, A");
-			System.out.println(rowandA.getPos());
-			
-						
-			
-			// number of players stored in HashMap
-			int numberOfPlayers = playerDatabase.values().size();
-			System.out.println("The number of players stored in the HashMap database: "+numberOfPlayers);
-			
-			
-			// scan for most home runs
-			int i = 0;
-			for (i = 0; i < playerDatabase.values().size(); i++) {
-				Collection<PlayerRecord> vals = playerDatabase.values();
-				
-				
-				
-			}
-		}
+			HashMap<String, ArrayList<PlayerRecord>> playerDatabase = readURL(urlName);
+			System.out.println(playerDatabase);
+
+					}
 		catch (IOException e) {e.printStackTrace();}
 
-		// key "player" for list of statistics stored in HashMap in order
 
 
 	}
