@@ -17,62 +17,56 @@ import java.util.Map.Entry;
 
 
 public class LinkReader {
-	
-	
-	public static HashMap<String,ArrayList<String>> readURL(String urlName) throws IOException {
-		
+
+
+	public static HashMap<String,PlayerRecord> readURL(String urlName) throws IOException {
+
 		URL u = new URL(urlName); // convert string to URL
 		InputStream is_url = u.openStream(); // inputs URL as bytes
 		InputStreamReader isr_url = new InputStreamReader(is_url); // wrap input stream
 		BufferedReader url = new BufferedReader(isr_url); // reads large chunk of data into memory
-		//Scanner s = new Scanner(url); // instantiate scanner for input URL
-		Scanner s = new Scanner(url).useDelimiter("\t"); // uses tab as delimiter for scanner
-		
-		ArrayList<String> data = new ArrayList<String>(); // instantiate ArrayList to hold strings parsed by scanner from each line
-		HashMap<String, ArrayList<String>> dataHashMap = new HashMap<String,ArrayList<String>>(); // instantiate HashMap to store this data for each player key/name 
+
+
+		String line = "";
 		String keyName;
-		
-		// loop will scan the whole URL and store player data in HashMap using one ArrayList for each player.
-		while (s.hasNext()) {
-			// String line = "";
-			// line=bufferedreader.readLine() != null;
-			
-			// this while loop fills ArrayList with data from one line
-			while (s.hasNext() && s.next() != "\n") {
-				String element = s.next(); // using tab delimiter
-				data.add(element); // append to data ArrayList
+		String element;
+		int i = 0;
+		HashMap<String,PlayerRecord> playerDatabase = new HashMap<String,PlayerRecord>();
+		ArrayList<String> data = new ArrayList<String>();
+
+		while ((line=url.readLine()) != null) {
+			//System.out.println(line);
+			Scanner s = new Scanner(line).useDelimiter("\t"); // uses tab as delimiter for scanner
+
+			element = s.next();
+			data.add(element);
+			if (data.size() > 12) {
+				PlayerRecord playerRecord = new PlayerRecord(data);
+				keyName = data.get(0); 
+				playerDatabase.put(keyName, playerRecord);
+				data = new ArrayList<String>();
+				s.close();
 			}
-		
-		keyName = data.get(0); // get player name/key for line just read
-		
-		// stores the ArrayList into HashMap once it contains all data fields from one line
-		// then resets the ArrayList for then next line
-		dataHashMap.put(keyName, data);
-		data = new ArrayList<String>();
 		}
-		
-		//s.close();
-		
-		return dataHashMap;
-	
-	
-	
-	
+
+
+		PlayerRecord playerRecord = new PlayerRecord(data);
+
+		return playerDatabase;		
 	}
-	
-	
+
 	public static void main(String[] args) {
 		String urlName = "http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/MLB2001Hitting.txt";
-	
+
 		try {
-		HashMap<String, ArrayList<String>> playerDatabase = readURL(urlName);
-		System.out.println(playerDatabase);
+			HashMap<String, PlayerRecord> playerDatabase = readURL(urlName);
+			System.out.println(playerDatabase);
 		}
 		catch (IOException e) {e.printStackTrace();}
-	
-	// key "player" for list of statistics stored in HashMap in order
 
-	
+		// key "player" for list of statistics stored in HashMap in order
+
+
 	}
 
 }

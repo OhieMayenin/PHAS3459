@@ -36,7 +36,6 @@ public class PlayerRecord {
 		int i = 0; // initialise loop counter
 		String [] order = {this.team, this.pos, this.G, this.AB, this.R, this.H, this.twoB, this.threeB, this.HR, this.RBI, this.AVG, this.OBP}; 
 		// this string array is for referencing the order of the elements in the following for loop
-		
 		// for loop sets all data variables to the input ArrayList values
 		for (i = 0; i < order.length; i++ ) {
 		order[i] = playerData.get(i);
