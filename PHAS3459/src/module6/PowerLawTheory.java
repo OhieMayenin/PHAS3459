@@ -13,4 +13,9 @@ public class PowerLawTheory
 		double yCurve = Math.pow(x, n);
 		return yCurve;
 	}
+	
+	public String toString() {
+		String str = "y = x^"+n;
+		return str;
+	}
 }
