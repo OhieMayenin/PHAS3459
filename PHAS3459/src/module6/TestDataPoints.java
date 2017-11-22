@@ -33,12 +33,12 @@ public class TestDataPoints {
 		double y = Double.parseDouble(s.next());
 		double ey = Double.parseDouble(s.next());
 
-		if(s.next() != "\n") {
+		if(s.hasNext()) {
 			String label = s.next();
 			dataPoint = new LabelledDataPoint(x,y,ey,label);
 			} 
 		
-		else if (s.next() == "\n") {
+		else {
 			String label = null;
 			dataPoint = new DataPoint(x,y,ey);
 			}
