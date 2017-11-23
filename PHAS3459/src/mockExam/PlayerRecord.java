@@ -34,6 +34,7 @@ public class PlayerRecord {
 	 * <team, pos, G, AB, R, H, twoB, threeB, HR, RBI, AVG, OBP, SLG, 0PS>
 	 */
 	public PlayerRecord (ArrayList<String> input) {
+		// setting all the values defined above to the elements of the input ArrayList
 		this.keyName=  input.get(0);
 		this.team = input.get(1);
 		this.pos = input.get(2);
@@ -49,8 +50,7 @@ public class PlayerRecord {
 		this.OBP  = input.get(12);
 		this.SLG = input.get(13);
 		this.OPS = input.get(14);
-		// this sets all the values defined above to the elements of the input ArrayList
-	}
+			}
 
 
 

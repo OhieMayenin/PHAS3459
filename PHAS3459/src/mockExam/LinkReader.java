@@ -28,10 +28,10 @@ public class LinkReader {
 		BufferedReader url = new BufferedReader(isr_url); // reads large chunk of data into memory
 
 
-		String line = "";
-		String keyTeamName = "";
+		String line = ""; 			// initialise line to scan
+		String keyTeamName = "";	// initialise hash key
 		PlayerRecord playerData;
-		int i = 0;
+		int i = 0;					
 
 		ArrayList<PlayerRecord> allPlayers = new ArrayList<PlayerRecord>();
 
@@ -142,7 +142,7 @@ public class LinkReader {
 
 		}
 
-		catch (IOException e) {e.printStackTrace();}
+		catch (IOException e) {e.printStackTrace();} // catching any exceptions thrown by try block
 
 		
 // THIS IS THE CODE THAT SIMON EMAILED TO EVERYONE //

@@ -30,6 +30,7 @@ public class Earthquake {
 	 * <year, month, day, hour, minute, second, latitude, longitude, depth, EH1, EH2, AZ, EZ, MAG, ID>
 	 */
 	public Earthquake (ArrayList<String> input) {
+		// setting all the values defined above to the elements of the input ArrayList
 		this.year=  input.get(0);
 		this.month = input.get(1);
 		this.day = input.get(2);
@@ -45,7 +46,7 @@ public class Earthquake {
 		this.EZ  = input.get(12);
 		this.MAG = input.get(13);
 		this.ID = input.get(14);
-		// this sets all the values defined above to the elements of the input ArrayList
+		
 	}
 
 
