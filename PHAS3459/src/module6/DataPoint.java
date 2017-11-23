@@ -22,7 +22,7 @@ public class DataPoint {
 
 	// writing toString method to print DataPoint in suitable format
 	public String toString () {
-		String str = "( x = "+ this.x + ", y = " + this.y + "+-" + this.ey + " )";
+		String str = "( x = "+ this.x + ", y = " + this.y + "+-" + this.ey + " )" +"\n";
 		return str;
 	}
 

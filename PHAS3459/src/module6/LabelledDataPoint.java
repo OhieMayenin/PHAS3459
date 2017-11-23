@@ -21,7 +21,7 @@ public class LabelledDataPoint extends DataPoint{
 
 	// toString method incorporates the label
 	public String toString () {
-		String str = label +": ( x = "+ this.x + ", y = " + this.y + "+-" + this.ey + " )";
+		String str = label +": ( x = "+ this.x + ", y = " + this.y + "+-" + this.ey + " )" +"\n";
 		return str;
 	}
 
