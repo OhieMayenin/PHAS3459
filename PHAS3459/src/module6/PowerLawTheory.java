@@ -4,8 +4,7 @@
 
 package module6;
 
-public class PowerLawTheory 
-implements Theory {
+public class PowerLawTheory implements Theory {
 
 	double n;
 

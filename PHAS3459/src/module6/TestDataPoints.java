@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-import mockExam.PlayerRecord;
 
 public class TestDataPoints {
 

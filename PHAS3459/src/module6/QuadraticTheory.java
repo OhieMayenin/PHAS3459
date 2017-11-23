@@ -4,8 +4,7 @@
 
 package module6;
 
-public class QuadraticTheory 
-implements Theory {
+public class QuadraticTheory implements Theory {
 
 	double a;
 	double b;
@@ -30,7 +29,6 @@ implements Theory {
 		String str = null;
 
 		// if constant is equal to zero, remove corresponding order from string
-
 		if (a != 0 && b != 0 && c != 0) {
 			str = "y = "+a +"x^2 + " +b +"x + " +c;
 		}

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class ChiSquared implements GoodnessOfFitCalculator {
 
-	public ChiSquared() {}
+	public ChiSquared() {} // constructor
 
 	public double goodnessOfFit(Theory theoretical, ArrayList<DataPoint> dataPoints){
 
