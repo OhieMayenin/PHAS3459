@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 public class ChiSquared implements GoodnessOfFitCalculator {
 	
+	public ChiSquared() {}
+	
 	public static double goodnessOfFit(Theory theoretical, ArrayList<DataPoint> dataPoints){
 
 		int i; // initialise loop counter
