@@ -1,7 +1,7 @@
 package module8;
 
 public class CountdownTask implements Runnable{
-	int time;
+	public int time;
 
 
 	/*
@@ -15,8 +15,13 @@ public class CountdownTask implements Runnable{
 	public long getTime() {
 		return System.currentTimeMillis();
 	}
+	
+	public int getTimeFromTimer() {
+		return time;
+	}
 
 	public void run() {
+		System.out.println(time);
 		long initialTime  = getTime();
 		long currentTime;
 
@@ -27,7 +32,7 @@ public class CountdownTask implements Runnable{
 				initialTime  = getTime();
 			}
 		}
-
+		System.out.println("Countdown has finished.");
 
 	}
 }
