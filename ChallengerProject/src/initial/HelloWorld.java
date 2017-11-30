@@ -1,3 +1,7 @@
+/**
+ * standard HelloWorld class with some J Hus lyrics for embellishment
+ */
+
 package initial;
 
 public class HelloWorld {
