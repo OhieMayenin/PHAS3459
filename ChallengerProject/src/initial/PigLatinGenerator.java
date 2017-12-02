@@ -6,7 +6,7 @@ package initial;
 public class PigLatinGenerator {
 	
 	// method gives pig latin conversion of input string
-	public static void convertToPigLatin(String input) {
+	public static void convertToPL(String input) {
 		StringBuilder pigLatinSentence = new StringBuilder ();
 		StringBuilder pigLatinWord = new StringBuilder ();
 		int length = input.length();

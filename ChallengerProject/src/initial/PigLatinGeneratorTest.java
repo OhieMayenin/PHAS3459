@@ -12,10 +12,10 @@ public class PigLatinGeneratorTest {
 		String str3 = "Floccinaucinihilipilification";
 		String str4 = "Each word in this sentence must be converted to pig latin";
 		
-		PigLatinGenerator.convertToPigLatin(str1);
-		PigLatinGenerator.convertToPigLatin(str2);
-		PigLatinGenerator.convertToPigLatin(str3);
-		PigLatinGenerator.convertToPigLatin(str4);
+		PigLatinGenerator.convertToPL(str1);
+		PigLatinGenerator.convertToPL(str2);
+		PigLatinGenerator.convertToPL(str3);
+		PigLatinGenerator.convertToPL(str4);
 
 	}
 
