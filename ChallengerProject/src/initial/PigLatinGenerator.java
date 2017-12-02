@@ -16,6 +16,7 @@ public class PigLatinGenerator {
 		boolean firstWordPassed = false;
 		char first;
 		String firstChar = "";
+		String firstCharLower = "";
 
 		// loop generates pig latin string
 		for (i = 1; i < length; i++) {
@@ -25,18 +26,20 @@ public class PigLatinGenerator {
 			if (firstWordPassed == false) {
 				first = input.charAt(0);
 				firstChar = Character.toString(first);
+				firstCharLower = firstChar.toLowerCase();
 				firstWordPassed = true;
 			}
 
 
 			// creates new word at whitespace
 			if ((input.charAt(i)) == ' ') {
-				pigLatinWord.append(firstChar +"ay ");
+				pigLatinWord.append(firstCharLower +"ay ");
 				pigLatinSentence.append(pigLatinWord.toString());
 				pigLatinWord = new StringBuilder ();
 				i++;
 				first = input.charAt(i);
-				firstChar = Character.toString(first);				
+				firstChar = Character.toString(first);
+				firstCharLower = firstChar.toLowerCase();;
 			} 
 
 			else {
@@ -45,12 +48,12 @@ public class PigLatinGenerator {
 
 			// final word check
 			if (i == length -1 ) {
-				pigLatinWord.append(firstChar +"ay ");
+				pigLatinWord.append(firstCharLower +"ay ");
 				pigLatinSentence.append(pigLatinWord.toString());
 			}
 
 			if (pigLatinWord.length() == length-1) {
-				pigLatinWord.append(firstChar +"ay ");
+				pigLatinWord.append(firstCharLower +"ay ");
 				pigLatinSentence.append(pigLatinWord.toString());
 			}
 
