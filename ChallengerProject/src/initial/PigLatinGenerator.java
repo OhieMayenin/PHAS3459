@@ -3,6 +3,8 @@
  */
 package initial;
 
+import java.util.ArrayList;
+
 public class PigLatinGenerator {
 
 	// method gives pig latin conversion of input string
@@ -21,26 +23,33 @@ public class PigLatinGenerator {
 			String firstChar = "";
 			
 
-			if (pigLatinSentence == null) {
+			if (pigLatinSentence.length() == 0) {
 				first = input.charAt(0);
+				firstChar = Character.toString(first);
 				firstWordPassed = true;
 			}
-
-			if (pigLatinWord == null && firstWordPassed == true) {
+			
+		
+			
+			if (input.charAt(i-1) == ' ' && firstWordPassed == true) {
 				first = input.charAt(i);
 				firstChar = Character.toString(first);
-			}
-
-
-			if ((input.charAt(i)) == ' ' || i == length-1) {
-				pigLatinWord.append(firstChar);
-				pigLatinWord.append("ay ");
+				i++;
+				}
+			
+			if ((input.charAt(i)) == ' ') {
+				pigLatinWord.append(firstChar +"ay ");
 				pigLatinSentence.append(pigLatinWord.toString());
 				pigLatinWord = new StringBuilder ();
-				i++;
-			}
+				}
+			
 			else {
 				pigLatinWord.append(input.charAt(i));
+			}
+			
+			if (input.contains(" ") == false && pigLatinWord.length() == length-1) {
+				pigLatinWord.append(firstChar +"ay ");
+				pigLatinSentence.append(pigLatinWord.toString());
 			}
 
 
