@@ -110,7 +110,7 @@ public class QuoteDirectory {
 				"Fuck you, Bush!";
 		quotes.put("political", political);
 		
-		lonely = "Well, it's the 21st centry and no one actually likes each other anymore, so let's just leave it at that, shall we?";
+		lonely = "Mark: Well, it's the 21st centry and no one actually likes each other anymore, so let's just leave it at that, shall we?";
 		quotes.put("lonely", lonely);
 		
 		pathetic = "Mark: She must never know what a pathetic man I am.";
