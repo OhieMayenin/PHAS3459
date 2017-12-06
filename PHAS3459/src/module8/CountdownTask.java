@@ -26,7 +26,7 @@ public class CountdownTask implements Runnable{
 		long initialTime  = getTime();
 		long currentTime;
 
-		while (time !=0) {
+		while (time > 0) {
 			if (((currentTime = getTime()) - initialTime) >= 1000) {
 				time = time - 1;
 				System.out.println(time);
@@ -35,6 +35,7 @@ public class CountdownTask implements Runnable{
 		}
 		System.out.println("Countdown has finished.");
 		return;
-		
 	}
+	
+
 }
