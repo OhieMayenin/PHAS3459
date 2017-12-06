@@ -8,7 +8,8 @@ public class ThreadsMain {
 				
 		PrimeNumberTask primeNumberTask = new PrimeNumberTask();
 		Thread thread2 = new Thread(primeNumberTask);
-			
+		
+		// starting threads
 		thread1.start();
 		thread2.start();
 		

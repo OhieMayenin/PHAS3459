@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class PrimeNumberTask implements Runnable {
 
 	public void run () {
-		int integer = 2;
+		int integer = 2; // set starting int
 		int i;
 		boolean isPrime = true;
 		ArrayList<Integer> primeNumbers = new ArrayList<Integer>(); // ArrayList to hold prime numbers
