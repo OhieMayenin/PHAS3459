@@ -3,28 +3,31 @@ package module8;
 import java.util.ArrayList;
 
 public class PrimeNumberTask implements Runnable {
-	int time;
-	CountdownTask timer = new CountdownTask(time);
-	
 
 	public void run () {
-		int i; 
+		int integer;
+		int i;
 		boolean isPrime = true;
 		ArrayList<Integer> primeNumbers = new ArrayList<Integer>(); // ArrayList to hold prime numbers
+		int maxInt = Integer.MAX_VALUE;
 
-				
 		// loop checks if time is prime number
-		for (i = 2; i < time; i++) {
+		while (!Thread.currentThread().isInterrupted()) {
+		for (integer = 0; integer < maxInt ; integer++) {
+			isPrime = true;
 
-			if (timer.time % i == 0 && isPrime == true  ) {
-				isPrime = false;
+			for (i = 2; i < integer; i++) {
+				if (integer % i == 0) {
+					isPrime = false;
+					i = integer;
+				}
 			}
 
+			if (isPrime == true) {
+				primeNumbers.add(integer); // add prime number to ArrayList
+			}
 		}
-		if (isPrime == true) {
-			primeNumbers.add(timer.time); // add prime number to ArrayList
 		}
-		
 		System.out.println(primeNumbers);
 	}
 }

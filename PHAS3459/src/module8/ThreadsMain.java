@@ -13,6 +13,14 @@ public class ThreadsMain {
 		thread1.start();
 		thread2.start();
 		
+		try {
+			thread1.join();
+			thread2.interrupt();
+			}
+		catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		}
 
 	}

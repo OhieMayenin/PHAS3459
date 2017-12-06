@@ -21,6 +21,7 @@ public class CountdownTask implements Runnable{
 	}
 
 	public void run() {
+		
 		System.out.println(time);
 		long initialTime  = getTime();
 		long currentTime;
@@ -33,6 +34,7 @@ public class CountdownTask implements Runnable{
 			}
 		}
 		System.out.println("Countdown has finished.");
-
+		return;
+		
 	}
 }
