@@ -60,10 +60,14 @@ public class ThreadsTimer {
 		long endTime = System.currentTimeMillis();
 		long timeTaken = (endTime-startTime);
 		System.out.println("Pi calculated using four threads: " +pi);
-		System.out.println("Time taken: " +timeTaken +" ms");
+		System.out.println("Time taken: " +timeTaken +" ms" +"\n");
 		}
 		
 		catch (Exception e) {e.printStackTrace();}
+		
+		// comments
+		System.out.println("The calculator was faster when using four threads compared to when just using one.");
+		System.out.println("The accuracy of both estimates are the same over many excecutions of the program.");
 	}
 
 }
