@@ -1,3 +1,8 @@
+/**
+ * this class defines a CountdownTask object
+ * counts down in seconds from a specified start time
+ */
+
 package module8;
 
 public class CountdownTask implements Runnable{
@@ -16,17 +21,14 @@ public class CountdownTask implements Runnable{
 		return System.currentTimeMillis();
 	}
 	
-	public int getTimeFromTimer() {
-		return time;
-	}
-
 	// run method
 	public void run() {
 		
-		System.out.println(time);
+		System.out.println(time); // print starting time
 		long initialTime  = getTime();
 		long currentTime;
 
+		// loop prints new time after 1000 ms have passed
 		while (time > 0) {
 			if (((currentTime = getTime()) - initialTime) >= 1000) {
 				time = time - 1;

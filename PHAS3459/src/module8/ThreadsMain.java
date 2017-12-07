@@ -1,3 +1,8 @@
+/**
+ * this main class runs the countdown task and prime number task
+ * runs them on two different threads
+ */
+
 package module8;
 
 public class ThreadsMain {
@@ -14,8 +19,8 @@ public class ThreadsMain {
 		thread2.start();
 		
 		try {
-			thread1.join();
-			thread2.interrupt();
+			thread1.join(); // wait for thread1 to complete
+			thread2.interrupt(); // then interrupt thread2
 			}
 		catch (InterruptedException e) {
 			e.printStackTrace();
