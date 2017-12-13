@@ -6,20 +6,20 @@ import java.awt.*;
 public class GraphicsPanel extends JPanel {
 	
 	// coordinates of Sun
-	int xSun;
-	int ySun;
+	static int xSun;
+	static int ySun;
 	// coordinates of Mercury
-	int xMerc;
-	int yMerc;
+	static int xMerc;
+	static int yMerc;
 	// coordinates of Venus
-	int xVenus;
-	int yVenus;
+	static int xVenus;
+	static int yVenus;
 	// coordinates of Earth
-	int xEarth;
-	int yEarth;
+	static int xEarth;
+	static int yEarth;
 	// coordinates of Mars
-	int xMars;
-	int yMars;
+	static int xMars;
+	static int yMars;
 	
 	/* Constructor just sets size of panel. */
 	public GraphicsPanel(int width, int height) {
