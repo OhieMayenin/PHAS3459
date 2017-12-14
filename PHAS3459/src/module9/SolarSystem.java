@@ -19,7 +19,7 @@ public class SolarSystem {
 
 		// exit application if window is closed
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		GraphicsPanel panel = new GraphicsPanel(400,400);
+		GraphicsPanel panel = new GraphicsPanel(1920,1080);
 		frame.add(panel); // add label to frame
 		frame.pack(); // set component sizes and layout
 		frame.setVisible(true); // display resulting frame

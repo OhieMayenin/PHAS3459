@@ -44,41 +44,36 @@ public class GraphicsPanel extends JPanel {
 		g.setColor(Color.YELLOW);
 		xSun = width/2;
 		ySun = height/2;
-		g.fillOval(xSun, ySun, 70, 70);
+		g.fillOval(xSun, ySun, 35, 35);
 			
 		// MERCURY
 		g.setColor(Color.GRAY);
-		xMerc = width/3;
-		yMerc = height/3;
-		g.fillOval(xMerc, yMerc, 20, 20);
+		xMerc = 5*width/9;
+		yMerc = 5*height/9;
+		g.fillOval(xMerc, yMerc, 6, 6);
 		
 		// VENUS
 		g.setColor(Color.ORANGE);
-		xVenus = width/4;
-		yVenus = height/4;
-		g.fillOval(xVenus, yVenus, 25, 25);
+		xVenus = 2*width/5;
+		yVenus = 2*height/5;
+		g.fillOval(xVenus, yVenus, 10, 10);
 		
 		// EARTH
 		g.setColor(Color.BLUE);
-		xEarth = width/5;
-		yEarth = height/5;
-		g.fillOval(xEarth, yEarth, 30, 30);
+		xEarth = 2*width/6;
+		yEarth = 2*height/6;
+		g.fillOval(xEarth, yEarth, 12, 12);
 		
 		// MARS
 		g.setColor(Color.RED);
-		xMars = width/6;
-		yMars = height/6;
-		g.fillOval(xMars, yMars, 20, 20);
+		xMars = 2*width/7;
+		yMars = 2*height/7;
+		int xSunInt = (int) xSun;
+		int ySunInt = (int) ySun;
+		g.fillOval(xMars, yMars, 8, 8);
 			
-			
-//		for (double r = 0.0; r < 1.0; r += 0.05) {
-//			int x = (int) (width*r);
-//			int y = height - (int) (height*r);
-//			g.drawLine(x, 0, 0, y);
-//		}
-		
+				
 		Font f = new Font("TimesRoman",Font.BOLD,28);
 		g.setFont(f);
-		//g.drawString("where am i",width/2,height/2);
 	}
 }
