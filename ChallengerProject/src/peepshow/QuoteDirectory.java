@@ -42,6 +42,7 @@ public class QuoteDirectory {
 	String sluggish;
 	String bored;
 
+	String feeling; // input
 
 	// sets quotes to a feeling
 	public void setQuotes() {
@@ -124,38 +125,34 @@ public class QuoteDirectory {
 		
 		sluggish = "Jeremy: No milk... Not black tea. I’m not some kind of monster!";
 		quotes.put("sluggish", sluggish);
-		
-		sluggish = "Jeremy: No milk... Not black tea. I’m not some kind of monster!";
-		quotes.put("sluggish", sluggish);
-		
+			
 		bored = "Super Hans: Answer - a wicked big bag of sinister minister";
 		quotes.put("bored", bored);
 
 	}
 
 	// get quote for user feeling
-	public void getQuote() {
+	public void getQuote() throws Exception{
 		System.out.println("How are you feeling in one word?"); // pose question to user
 
 		Scanner s = new Scanner(System.in);
 
-		String feeling = s.nextLine(); // read input word
-
-
+		feeling = s.nextLine(); // read input word
+		
 		s.close();
 
 		// check if input is one-worded, if not print error message and repose question
 		if (feeling.contains(" ")) {
 			System.out.println("Error: Please input a one-word feeling with no spaces." + "\n");
 
-			System.out.println("How are you feeling in one word? (Hint: Write one word ths time.)"); // pose question to user
+			//System.out.println("How are you feeling in one word? (Hint: Write one word ths time.)"); // pose question to user
 
-			s = new Scanner(System.in);
+			Scanner s2 = new Scanner(System.in);
 
-			feeling = s.nextLine(); // read input word
-			//checkSynonyms(feeling);
+			feeling = s2.nextLine(); // read input word
+		
 
-			s.close();
+			s2.close();
 		} 
 
 		//		else if (feeling == "indifferent" || feeling == "any" || feeling == "anyquote") {
@@ -171,14 +168,40 @@ public class QuoteDirectory {
 
 			if (quoteOutput == null) {
 				System.out.println("Couldn't return a relatable quote, although one surely does exist..." +"\n" 
-						+"Please write a more commonly used one-word description of feeling.");
+						+"Please write a more commonly used one-word description of feeling...");
+			
 			}
-			else {System.out.println(quoteOutput);}
+			else {System.out.println("\n" +quoteOutput);}
 		}
 	}
 
-	//	public static void checkSynonyms(String input) {
-	//		
-	//	}
+		public void checkSynonyms() {
+			// sad synonyms
+			if (feeling == "upset") {feeling = "sad";}
+			if (feeling == "unhappy") {feeling = "sad";}
+			if (feeling == "depressed") {feeling = "sad";}
+			if (feeling == "miserable") {feeling = "sad";}
+			if (feeling == "blue") {feeling = "sad";}
+			
+			// happy synonyms
+			if (feeling == "great") {feeling = "happy";}
+			if (feeling == "wonderful") {feeling = "happy";}
+			if (feeling == "fantastic") {feeling = "happy";}
+			if (feeling == "brilliant") {feeling = "happy";}
+			if (feeling == "cheerful") {feeling = "happy";}
+			
+			// others
+			if (feeling == "terrified") {feeling = "scared";}
+			if (feeling == "furious") {feeling = "angry";}
+			if (feeling == "annoyed") {feeling = "frustrated";}
+			if (feeling == "vexed") {feeling = "frustrated";}
+			if (feeling == "dubious") {feeling = "doubtful";}
+			if (feeling == "shy") {feeling = "introverted";}
+			if (feeling == "antisocial") {feeling = "introverted";}
+			if (feeling == "anti-social") {feeling = "introverted";}
+			
+			
+		
+		}
 
 }
