@@ -21,10 +21,19 @@ public class GraphicsPanel extends JPanel {
 	static int xMars;
 	static int yMars;
 	
+	// set polar coordinates
+	static int rMerc = (int) Math.sqrt((xMerc - xSun)*(xMerc - xSun) + (yMerc - ySun)*(yMerc - ySun));
+	static int rVenus = (int) Math.sqrt((xVenus - xSun)*(xVenus - xSun) + (yVenus - ySun)*(yVenus - ySun));;
+	static int rEarth = (int) Math.sqrt((xEarth - xSun)*(xEarth - xSun) + (yEarth - ySun)*(yEarth - ySun));;
+	static int rMars = (int) Math.sqrt((xMars - xSun)*(xMars - xSun) + (yMars - ySun)*(yMars - ySun));;
+	
 	/* Constructor just sets size of panel. */
 	public GraphicsPanel(int width, int height) {
 		setPreferredSize(new Dimension(width,height));
+		//Timer animationTimer = new Timer(dt,this);
+		//animationTimer.start();
 	}
+
 	
 	
 	 /* Must override this method, which is called
