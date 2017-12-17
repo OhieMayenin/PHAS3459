@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GraphicsPanel extends JPanel {
-	
+		
 	// coordinates of Sun
 	static int xSun;
 	static int ySun;
@@ -22,10 +22,16 @@ public class GraphicsPanel extends JPanel {
 	static int yMars;
 	
 	// set polar coordinates
-	static int rMerc = (int) Math.sqrt((xMerc - xSun)*(xMerc - xSun) + (yMerc - ySun)*(yMerc - ySun));
-	static int rVenus = (int) Math.sqrt((xVenus - xSun)*(xVenus - xSun) + (yVenus - ySun)*(yVenus - ySun));;
-	static int rEarth = (int) Math.sqrt((xEarth - xSun)*(xEarth - xSun) + (yEarth - ySun)*(yEarth - ySun));;
-	static int rMars = (int) Math.sqrt((xMars - xSun)*(xMars - xSun) + (yMars - ySun)*(yMars - ySun));;
+//	static int rMerc = (int) Math.sqrt((xMerc - xSun)*(xMerc - xSun) + (yMerc - ySun)*(yMerc - ySun));
+//	static int rVenus = (int) Math.sqrt((xVenus - xSun)*(xVenus - xSun) + (yVenus - ySun)*(yVenus - ySun));;
+//	static int rEarth = (int) Math.sqrt((xEarth - xSun)*(xEarth - xSun) + (yEarth - ySun)*(yEarth - ySun));;
+//	static int rMars = (int) Math.sqrt((xMars - xSun)*(xMars - xSun) + (yMars - ySun)*(yMars - ySun));;
+	
+	// set them constant
+	static int rMerc = 50;
+	static int rVenus = 100;
+	static int rEarth = 150;
+	static int rMars = 200;
 	
 	/* Constructor just sets size of panel. */
 	public GraphicsPanel(int width, int height) {
@@ -77,8 +83,6 @@ public class GraphicsPanel extends JPanel {
 		g.setColor(Color.RED);
 		xMars = 2*width/7;
 		yMars = 2*height/7;
-		int xSunInt = (int) xSun;
-		int ySunInt = (int) ySun;
 		g.fillOval(xMars, yMars, 8, 8);
 			
 				

@@ -32,14 +32,15 @@ public class AnimationPanel extends GraphicsPanel implements ActionListener {
 	private static final double uMars  =10;
 	
 	// set initial angles of planets
-	static int angleMerc = 0;
-	static int angleVenus = 0;
-	static int angleEarth = 0;
-	static int angleMars = 0;
-	static int delta = 1;
+	double angleMerc = Math.atan2(yMerc, xMerc);
+	double angleVenus = Math.atan2(yVenus, xVenus);;
+	double angleEarth = Math.atan2(yEarth, xEarth);;
+	double angleMars = Math.atan2(yMars, xMars);;
+	double delta = 1;
 	
-
-	
+	// initialise planet coordinates in terms of r and angle
+//	xMerc = super.rMerc*Math.cos(angleMerc);
+//	yMerc = super.rMerc*Math.sin(angleMerc);
 	
 	
 	
