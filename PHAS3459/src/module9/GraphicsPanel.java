@@ -115,7 +115,7 @@ public class GraphicsPanel extends JPanel {
 		// EARTH
 		xEarth = (int) (rEarth*Math.cos(angleEarth));
 		yEarth = (int) (rEarth*Math.sin(angleEarth));
-		GradientPaint earthColor = new GradientPaint(xEarth-12, yEarth-12, Color.cyan, xEarth+8, yEarth+8, Color.BLUE, colour);
+		GradientPaint earthColor = new GradientPaint(xEarth-12, yEarth-12, Color.GREEN, xEarth+8, yEarth+8, Color.BLUE, colour);
 		g2.setPaint(earthColor);
 		g2.fillOval(xEarth+xSun, yEarth+ySun+(sunHeight/2), 14, 14);
 
