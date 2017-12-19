@@ -23,12 +23,11 @@ public class AnimationPanel extends GraphicsPanel implements ActionListener {
 		startButton.addActionListener(this);
 		stopButton.addActionListener(this);
 		exitButton.addActionListener(this);
-		JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout(new BoxLayout(buttonPanel,BoxLayout.X_AXIS));
-		buttonPanel.add(startButton);
-		buttonPanel.add(stopButton);
-		buttonPanel.add(exitButton);
+		super.add(startButton);
+		super.add(stopButton);
+		super.add(exitButton);
 	}
+	
 
 	private static final double G = 6.674*Math.pow(10, -11); // gravitational constant
 	private static final double M = 100; // mass of sun
