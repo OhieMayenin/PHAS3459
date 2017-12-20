@@ -141,8 +141,8 @@ public class GraphicsPanel extends JPanel {
 		// Halley's comet
 		if (angleComet == 0) {angleComet = Math.PI/3;} // set initial angle to pi/3
 
-		xComet = (int) (Math.sqrt(rComet*rComet)*Math.cos(angleComet));
-		yComet = (int) (Math.sqrt(rComet*rComet)*Math.sin(angleComet));
+		xComet = (int) (rComet*Math.cos(angleComet));
+		yComet = (int) (rComet*Math.sin(angleComet));
 		GradientPaint cometColor = new GradientPaint(xComet, yComet, Color.WHITE, xComet+7, yComet+7, Color.WHITE, colour);
 		g2.setPaint(cometColor);
 		g.fillOval(xComet+xSun, yComet+ySun+(sunHeight/2)-60, 4, 4);
@@ -152,7 +152,7 @@ public class GraphicsPanel extends JPanel {
 		g.setFont(f);
 		
 		// time elapsed
-		g.drawString("Time Elapsed: " +AnimationPanel.timeElapsed/1000 + " s",width/20,height/20);
+		g.drawString("Time Elapsed: " +AnimationPanel.timeElapsed/1000 +" "+angleComet+" s",width/20,height/20);
 		
 //		// Halley's comet label
 //		f = new Font("TimesRoman",Font.TRUETYPE_FONT,11);
