@@ -56,6 +56,7 @@ public class GraphicsPanel extends JPanel {
 	
 	// boolean for colours
 	boolean colour = true;
+	static int asteroids = 0;
 
 	/* Constructor just sets size of panel. */
 	public GraphicsPanel(int width, int height) {
@@ -93,6 +94,7 @@ public class GraphicsPanel extends JPanel {
 		for (int i = 0; i < EmbellishedAnimPanel.NUM_AST; i++) {
 			if(Math.sqrt(Math.pow((EmbellishedAnimPanel.astX[i] - xSun),2) + Math.pow((EmbellishedAnimPanel.astY[i] - ySun),2))>350
 					&& Math.sqrt(Math.pow((EmbellishedAnimPanel.astX[i] - xSun),2) + Math.pow((EmbellishedAnimPanel.astY[i] - ySun),2))<430) {
+				asteroids++;
 				g2.fillOval(EmbellishedAnimPanel.astX[i], EmbellishedAnimPanel.astY[i],
 						EmbellishedAnimPanel.astRadius[i], EmbellishedAnimPanel.astRadius[i]);
 			}
@@ -111,7 +113,7 @@ public class GraphicsPanel extends JPanel {
 		// MERCURY
 		xMerc = (int) (rMerc*Math.cos(angleMerc));
 		yMerc = (int) (rMerc*Math.sin(angleMerc));
-		GradientPaint mercColor = new GradientPaint(xMerc-4, yMerc-4, Color.gray, xMerc+4, yMerc+4, Color.darkGray, colour);
+		GradientPaint mercColor = new GradientPaint(xMerc-4, yMerc-4, Color.gray, xMerc+4, yMerc+4, Color.black, colour);
 		g2.setPaint(mercColor);
 		g.fillOval(xMerc+xSun, yMerc+ySun+(sunHeight/2), 7, 7);
 
@@ -125,7 +127,7 @@ public class GraphicsPanel extends JPanel {
 		// EARTH
 		xEarth = (int) (rEarth*Math.cos(angleEarth));
 		yEarth = (int) (rEarth*Math.sin(angleEarth));
-		GradientPaint earthColor = new GradientPaint(xEarth-5, yEarth-5, Color.green, xEarth+8, yEarth+8, Color.BLUE, colour);
+		GradientPaint earthColor = new GradientPaint(xMoon-10, yMoon-10, Color.BLUE, xMoon+10, yMoon+10, Color.green, colour);
 		g2.setPaint(earthColor);
 		g2.fillOval(xEarth+xSun, yEarth+ySun+(sunHeight/2), 14, 14);
 
@@ -146,7 +148,7 @@ public class GraphicsPanel extends JPanel {
 		// Earth's moon
 		xMoon = (int) (rMoon*Math.cos(angleMoon));
 		yMoon = (int) (rMoon*Math.sin(angleMoon));
-		GradientPaint moonColor = new GradientPaint(xEarth-12, yEarth-12, Color.darkGray, xEarth+8, yEarth+8, Color.gray, colour);
+		GradientPaint moonColor = new GradientPaint(xMoon-5, yMoon-5, Color.darkGray, xMoon+8, yMoon+8, Color.black, colour);
 		g2.setPaint(moonColor);
 		g2.fillOval(xSun+xMoon+xEarth+5, ySun+yMoon+yEarth+(sunHeight/2)+5, 6, 6);
 		

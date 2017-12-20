@@ -26,7 +26,7 @@ public class EmbellishedAnimPanel extends AnimationPanel{
 	static int[] astX;
 	static int[] astY;
 	static int[] astRadius;
-
+	
 	/*
 	 * generates x,y coordinates and radii of stars
 	 * to be painted in GraphicsPanel
@@ -59,7 +59,7 @@ public class EmbellishedAnimPanel extends AnimationPanel{
 		// Fill them in with random values
 		for (int i = 0; i < NUM_AST; i++) {
 			astX[i] = rand.nextInt(width);
-			astY[i] = rand.nextInt(height);
+			astY[i] = rand.nextInt(height);	
 			astRadius[i] = rand.nextInt(asteroidMaxRadius);
 		}
 
