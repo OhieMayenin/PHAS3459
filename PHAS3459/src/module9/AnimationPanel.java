@@ -55,6 +55,7 @@ public class AnimationPanel extends GraphicsPanel implements ActionListener {
 	double cirVenus = 2*Math.PI*rVenus;
 	double cirEarth = 2*Math.PI*rEarth;
 	double cirMars = 2*Math.PI*rMars;
+	double cirJup = 2*Math.PI*rJup;
 	double cirMoon = 2*Math.PI*rMoon;
 	double cirComet = 2*Math.PI*rComet;
 	
@@ -79,12 +80,13 @@ public class AnimationPanel extends GraphicsPanel implements ActionListener {
 			angleMerc += 0.80*delta/cirMerc;
 			angleVenus += 0.65*delta/cirVenus;
 			angleEarth += 0.65*delta/cirEarth;
-			angleMars += 0.55*delta/cirMars;
-			angleMoon += 0.60*delta/cirMoon;
+			angleMars += 0.50*delta/cirMars;
+			angleJup += 0.165*delta/cirJup;
+			angleMoon += 0.79*delta/cirMoon;
 			
-			angleComet += 0.04*delta/(Math.pow((Math.abs(rComet)+20),0.9));
+			angleComet += 0.015*delta/(Math.pow((Math.abs(rComet)+20),0.9));
 			
-			rComet = (int) (500*Math.sin(angleComet));
+			rComet = (int) (500*Math.sin(angleComet+Math.PI/4));
 	
 			cirComet = 2*Math.PI*rComet;
 
@@ -102,6 +104,7 @@ public class AnimationPanel extends GraphicsPanel implements ActionListener {
 			angleVenus = 0;
 			angleEarth = 0;
 			angleMars = 0;
+			angleJup = 0;
 			angleMoon = 0;
 			angleComet = Math.PI/3;
 			rComet = 500;

@@ -20,6 +20,9 @@ public class GraphicsPanel extends JPanel {
 	// coordinates of Mars
 	static int xMars;
 	static int yMars;
+	// coordinates of Jupiter
+	static int xJup;
+	static int yJup;
 	// coordinates of the Moon
 	static int xMoon;
 	static int yMoon;
@@ -37,15 +40,17 @@ public class GraphicsPanel extends JPanel {
 	static int rMerc = 50;
 	static int rVenus = 100;
 	static int rEarth = 170;
-	static int rMars = 220;
+	static int rMars = 240;
 	static int rMoon = 17; // RADIUS FROM EARTH
 	static int rComet = 500;
+	static int rJup = 480;
 	
 	// set initial angles of planets
 	double angleMerc = Math.atan2(yMerc, xMerc);
 	double angleVenus = Math.atan2(yVenus, xVenus);;
 	double angleEarth = Math.atan2(yEarth, xEarth);;
 	double angleMars = Math.atan2(yMars, xMars);;
+	double angleJup = Math.atan2(yJup, xJup);
 	double angleMoon = Math.atan2(yMoon, xMoon);;
 	double angleComet = Math.atan2(yComet, xComet);
 	
@@ -86,8 +91,8 @@ public class GraphicsPanel extends JPanel {
 		// adding asteroid belt
 		g.setColor(Color.darkGray);
 		for (int i = 0; i < EmbellishedAnimPanel.NUM_AST; i++) {
-			if(Math.sqrt(Math.pow((EmbellishedAnimPanel.astX[i] - xSun),2) + Math.pow((EmbellishedAnimPanel.astY[i] - ySun),2))>370
-					&& Math.sqrt(Math.pow((EmbellishedAnimPanel.astX[i] - xSun),2) + Math.pow((EmbellishedAnimPanel.astY[i] - ySun),2))<450) {
+			if(Math.sqrt(Math.pow((EmbellishedAnimPanel.astX[i] - xSun),2) + Math.pow((EmbellishedAnimPanel.astY[i] - ySun),2))>350
+					&& Math.sqrt(Math.pow((EmbellishedAnimPanel.astX[i] - xSun),2) + Math.pow((EmbellishedAnimPanel.astY[i] - ySun),2))<430) {
 				g2.fillOval(EmbellishedAnimPanel.astX[i], EmbellishedAnimPanel.astY[i],
 						EmbellishedAnimPanel.astRadius[i], EmbellishedAnimPanel.astRadius[i]);
 			}
@@ -113,23 +118,30 @@ public class GraphicsPanel extends JPanel {
 		// VENUS	
 		xVenus = (int) (rVenus*Math.cos(angleVenus));
 		yVenus = (int) (rVenus*Math.sin(angleVenus));
-		GradientPaint venColor = new GradientPaint(xVenus-10, yVenus-10, Color.RED, xVenus+10, yVenus+10, Color.YELLOW, colour);
+		GradientPaint venColor = new GradientPaint(xVenus-9, yVenus-9, Color.RED, xVenus+10, yVenus+10, Color.YELLOW, colour);
 		g2.setPaint(venColor);
 		g2.fillOval(xVenus+xSun, yVenus+ySun+(sunHeight/2), 11, 11);
 
 		// EARTH
 		xEarth = (int) (rEarth*Math.cos(angleEarth));
 		yEarth = (int) (rEarth*Math.sin(angleEarth));
-		GradientPaint earthColor = new GradientPaint(xEarth-12, yEarth-12, Color.GREEN, xEarth+8, yEarth+8, Color.BLUE, colour);
+		GradientPaint earthColor = new GradientPaint(xEarth-5, yEarth-5, Color.green, xEarth+8, yEarth+8, Color.BLUE, colour);
 		g2.setPaint(earthColor);
 		g2.fillOval(xEarth+xSun, yEarth+ySun+(sunHeight/2), 14, 14);
 
 		// MARS	
 		xMars = (int) (rMars*Math.cos(angleMars));
 		yMars = (int) (rMars*Math.sin(angleMars));
-		GradientPaint marsColor = new GradientPaint(xMars, yMars, Color.RED, xMars+7, yMars+7, Color.black, colour);
+		GradientPaint marsColor = new GradientPaint(xMars, yMars, Color.black, xMars+6, yMars+6, Color.RED, colour);
 		g2.setPaint(marsColor);
 		g.fillOval(xMars+xSun, yMars+ySun+(sunHeight/2), 9, 9);
+		
+		// JUPITER
+		xJup = (int) (rJup*Math.cos(angleJup));
+		yJup = (int) (rJup*Math.sin(angleJup));
+		GradientPaint jupColor = new GradientPaint(xJup, yJup, Color.RED, xJup+7, yJup+7, Color.ORANGE, colour);
+		g2.setPaint(jupColor);
+		g.fillOval(xJup+xSun, yJup+ySun+(sunHeight/2), 22, 22);
 		
 		// Earth's moon
 		xMoon = (int) (rMoon*Math.cos(angleMoon));
@@ -141,22 +153,27 @@ public class GraphicsPanel extends JPanel {
 		// Halley's comet
 		if (angleComet == 0) {angleComet = Math.PI/3;} // set initial angle to pi/3
 
-		xComet = (int) (0.6*rComet*Math.cos(angleComet));
-		yComet = (int) (rComet*Math.sin(angleComet));
+		xComet = (int) (1.4*rComet*Math.cos(angleComet-Math.PI/4));
+		yComet = (int) (0.9*rComet*Math.sin(angleComet-Math.PI/4));
 		GradientPaint cometColor = new GradientPaint(xComet, yComet, Color.WHITE, xComet+7, yComet+7, Color.WHITE, colour);
 		g2.setPaint(cometColor);
-		g.fillOval(xComet+xSun, yComet+ySun+(sunHeight/2)-40, 4, 4);
+		g.fillOval(xComet+xSun-30, yComet+ySun+(sunHeight/2)-20, 3, 3);
 				 
 		// set font    
 		Font f = new Font("TimesRoman",Font.BOLD,20);
 		g.setFont(f);
 		
 		// time elapsed
-		g.drawString("Time Elapsed: " +AnimationPanel.timeElapsed/1000 +" "+angleComet+" s",width/20,height/20);
+		g.drawString("Earth Years Elapsed: " + angleEarth/6.28318 +"   " + angleMoon/(6.28318*12), width/20, height/20);
+		g.drawString("Martian Years Elapsed: " + angleMars/6.28318, width/20, height/14);
 		
-//		// Halley's comet label
-//		f = new Font("TimesRoman",Font.TRUETYPE_FONT,11);
-//		g.setFont(f);
-//		g.drawString("Halley's Comet", xSun+xComet+10, ySun+yComet-30);
+		// Halley's comet label
+		f = new Font("TimesRoman",Font.TRUETYPE_FONT,11);
+		g.setFont(f);
+		g.drawString("Halley's Comet", xSun+xComet-12, ySun+yComet-8);
+		
+		// note
+		f = new Font("TimesRoman",Font.TRUETYPE_FONT,13);
+		g.drawString("The orbital period & aphelion of Halley's comet have been greatly reduced.", width/20,height/10);
 	}
 }
