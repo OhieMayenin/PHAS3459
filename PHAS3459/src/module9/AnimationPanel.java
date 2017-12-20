@@ -33,6 +33,7 @@ public class AnimationPanel extends GraphicsPanel implements ActionListener {
 		super.add(stopButton);
 		super.add(resetButton);
 		super.add(exitButton);
+
 	}
 	
 
@@ -55,6 +56,7 @@ public class AnimationPanel extends GraphicsPanel implements ActionListener {
 	double cirEarth = 2*Math.PI*rEarth;
 	double cirMars = 2*Math.PI*rMars;
 	double cirMoon = 2*Math.PI*rMoon;
+	double cirComet = 2*Math.PI*rComet;
 	
 	// calculating total area swept in one orbit
 	final double orbAreaMerc = Math.PI*rMerc*rMerc;
@@ -79,6 +81,11 @@ public class AnimationPanel extends GraphicsPanel implements ActionListener {
 			angleEarth += 0.65*delta/cirEarth;
 			angleMars += 0.55*delta/cirMars;
 			angleMoon += 0.60*delta/cirMoon;
+			angleComet += 0.05*delta/(Math.pow(cirComet, 0.8));
+			
+			rComet = 500*Math.sin(angleComet) + 200*Math.cos(angleComet);
+	
+			cirComet = 2*Math.PI*rComet;
 
 			repaint();
 		}
@@ -87,6 +94,7 @@ public class AnimationPanel extends GraphicsPanel implements ActionListener {
 		else if (e.getSource()==startButton) {start();}
 		else if (e.getSource()==stopButton) {stop();}
 		else if (e.getSource()==exitButton) {System.exit(0);}
+		
 		else if (e.getSource()==resetButton) {
 			timeElapsed = 0;
 			angleMerc = 0;
@@ -94,6 +102,9 @@ public class AnimationPanel extends GraphicsPanel implements ActionListener {
 			angleEarth = 0;
 			angleMars = 0;
 			angleMoon = 0;
+			angleComet = 0;
+			rComet = 500;
+			cirComet = 2*Math.PI*rComet;
 		}
 	}
 

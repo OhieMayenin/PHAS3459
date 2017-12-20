@@ -23,6 +23,9 @@ public class GraphicsPanel extends JPanel {
 	// coordinates of the Moon
 	static int xMoon;
 	static int yMoon;
+	// coordinates of Halley's comet
+	static int xComet;
+	static int yComet;
 
 	// set polar coordinates
 	//	static int rMerc = (int) Math.sqrt((xMerc - xSun)*(xMerc - xSun) + (yMerc - ySun)*(yMerc - ySun));
@@ -36,13 +39,17 @@ public class GraphicsPanel extends JPanel {
 	static int rEarth = 170;
 	static int rMars = 220;
 	static int rMoon = 17; // RADIUS FROM EARTH
+
 	
 	// set initial angles of planets
 	double angleMerc = Math.atan2(yMerc, xMerc);
 	double angleVenus = Math.atan2(yVenus, xVenus);;
 	double angleEarth = Math.atan2(yEarth, xEarth);;
 	double angleMars = Math.atan2(yMars, xMars);;
-	double angleMoon= Math.atan2(yMoon, xMoon);;
+	double angleMoon = Math.atan2(yMoon, xMoon);;
+	static double angleComet = Math.atan2(yComet-ySun, xComet-xSun);
+	
+	static double rComet = 500;
 	
 	// boolean for colours
 	boolean colour = true;
@@ -132,15 +139,27 @@ public class GraphicsPanel extends JPanel {
 		GradientPaint moonColor = new GradientPaint(xEarth-12, yEarth-12, Color.darkGray, xEarth+8, yEarth+8, Color.gray, colour);
 		g2.setPaint(moonColor);
 		g2.fillOval(xSun+xMoon+xEarth+5, ySun+yMoon+yEarth+(sunHeight/2)+5, 6, 6);
-
-
-//		 GradientPaint redtowhite = new GradientPaint(x, y, Color.red, 200, y, Color.white);
-//		    g2.setPaint(redtowhite);
-
-		 
-		    
+		
+		// Halley's comet
+		if (angleComet == 0) {
+			angleComet = 1;
+		}
+		xComet = (int) (rComet*Math.cos(angleComet));
+		yComet = (int) (rComet*Math.sin(angleComet));
+		GradientPaint cometColor = new GradientPaint(xComet, yComet, Color.WHITE, xComet+7, yComet+7, Color.WHITE, colour);
+		g2.setPaint(cometColor);
+		g.fillOval(xComet+xSun, yComet+ySun+(sunHeight/2)-60, 4, 4);
+				 
+		// set font    
 		Font f = new Font("TimesRoman",Font.BOLD,20);
 		g.setFont(f);
+		
+		// time elapsed
 		g.drawString("Time Elapsed: " +AnimationPanel.timeElapsed/1000 + " s",width/20,height/20);
+		
+//		// Halley's comet label
+//		f = new Font("TimesRoman",Font.TRUETYPE_FONT,11);
+//		g.setFont(f);
+//		g.drawString("Halley's Comet", xSun+xComet+10, ySun+yComet-30);
 	}
 }
