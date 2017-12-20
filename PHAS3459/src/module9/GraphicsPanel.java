@@ -39,7 +39,7 @@ public class GraphicsPanel extends JPanel {
 	static int rEarth = 170;
 	static int rMars = 220;
 	static int rMoon = 17; // RADIUS FROM EARTH
-
+	static int rComet = 500;
 	
 	// set initial angles of planets
 	double angleMerc = Math.atan2(yMerc, xMerc);
@@ -47,9 +47,7 @@ public class GraphicsPanel extends JPanel {
 	double angleEarth = Math.atan2(yEarth, xEarth);;
 	double angleMars = Math.atan2(yMars, xMars);;
 	double angleMoon = Math.atan2(yMoon, xMoon);;
-	static double angleComet = Math.atan2(yComet-ySun, xComet-xSun);
-	
-	static double rComet = 500;
+	double angleComet = Math.atan2(yComet, xComet);
 	
 	// boolean for colours
 	boolean colour = true;
@@ -141,11 +139,10 @@ public class GraphicsPanel extends JPanel {
 		g2.fillOval(xSun+xMoon+xEarth+5, ySun+yMoon+yEarth+(sunHeight/2)+5, 6, 6);
 		
 		// Halley's comet
-		if (angleComet == 0) {
-			angleComet = 1;
-		}
-		xComet = (int) (rComet*Math.cos(angleComet));
-		yComet = (int) (rComet*Math.sin(angleComet));
+		if (angleComet == 0) {angleComet = Math.PI/3;} // set initial angle to pi/3
+
+		xComet = (int) (Math.sqrt(rComet*rComet)*Math.cos(angleComet));
+		yComet = (int) (Math.sqrt(rComet*rComet)*Math.sin(angleComet));
 		GradientPaint cometColor = new GradientPaint(xComet, yComet, Color.WHITE, xComet+7, yComet+7, Color.WHITE, colour);
 		g2.setPaint(cometColor);
 		g.fillOval(xComet+xSun, yComet+ySun+(sunHeight/2)-60, 4, 4);
