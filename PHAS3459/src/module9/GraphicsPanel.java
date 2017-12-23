@@ -156,7 +156,7 @@ public class GraphicsPanel extends JPanel {
 		if (angleComet == 0) {angleComet = Math.PI/3;} // set initial angle to pi/3
 
 		xComet = (int) (1.4*rComet*Math.cos(angleComet-Math.PI/4));
-		yComet = (int) (0.9*rComet*Math.sin(angleComet-Math.PI/4));
+		yComet = (int) (0.75*rComet*Math.sin(angleComet-Math.PI/4));
 		GradientPaint cometColor = new GradientPaint(xComet, yComet, Color.WHITE, xComet+7, yComet+7, Color.WHITE, colour);
 		g2.setPaint(cometColor);
 		g.fillOval(xComet+xSun-30, yComet+ySun+(sunHeight/2)-20, 3, 3);
@@ -176,6 +176,7 @@ public class GraphicsPanel extends JPanel {
 		
 		// note
 		f = new Font("TimesRoman",Font.TRUETYPE_FONT,13);
+		g.setFont(f);
 		g.drawString("The orbital period & aphelion of Halley's comet have been greatly reduced.", width/20,height/10);
 	}
 }

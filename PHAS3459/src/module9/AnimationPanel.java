@@ -84,7 +84,7 @@ public class AnimationPanel extends GraphicsPanel implements ActionListener {
 			angleJup += 0.165*delta/cirJup;
 			angleMoon += 0.79*delta/cirMoon;
 			
-			angleComet += 0.015*delta/(Math.pow((Math.abs(rComet)+20),0.9));
+			angleComet += 0.010*delta/(Math.pow((Math.abs(rComet)+20),0.8));
 			
 			rComet = (int) (500*Math.sin(angleComet+Math.PI/4));
 	
