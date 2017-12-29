@@ -37,7 +37,7 @@ public class GraphicsPanel extends JPanel {
 	static int yComet;
 
 	
-	// set them constant
+	// set constant
 	static int rMerc = 50;
 	static int rVenus = 100;
 	static int rEarth = 170;

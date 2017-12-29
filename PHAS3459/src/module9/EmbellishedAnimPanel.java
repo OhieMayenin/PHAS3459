@@ -44,7 +44,7 @@ public class EmbellishedAnimPanel extends AnimationPanel{
 		starY = new int[NUM_STARS];
 		starRadius = new int[NUM_STARS];
 		
-		// fill arrays with randomly generated coords and radius
+		// fill arrays with randomly generated coordinates and radius
 		for (int i = 0; i < NUM_STARS; i++) {
 			starX[i] = rand.nextInt(width);
 			starY[i] = rand.nextInt(height);
@@ -63,7 +63,7 @@ public class EmbellishedAnimPanel extends AnimationPanel{
 		astY = new int[NUM_AST];
 		astRadius = new int[NUM_AST];
 		
-		// fill arrays with randomly generated coords and radius
+		// fill arrays with randomly generated coordinates and radius
 		for (int i = 0; i < NUM_AST; i++) {
 			astX[i] = rand.nextInt(width);
 			astY[i] = rand.nextInt(height);	

@@ -30,7 +30,7 @@ public class SolarSystem {
 		frame.add(panel); // add animation to frame
 		frame.pack(); // set component sizes and layout
 		frame.setVisible(true); // display resulting frame
-		panel.animationTimer.start();
+		panel.animationTimer.start(); // start animation on launch
 	}
 	
 	

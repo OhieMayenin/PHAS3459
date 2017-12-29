@@ -41,16 +41,6 @@ public class AnimationPanel extends GraphicsPanel implements ActionListener {
 
 	}
 	
-
-	private static final double G = 6.674*Math.pow(10, -11); // gravitational constant
-	private static final double M = 100; // mass of sun
-
-	double uMerc = 10;
-	
-	double aMerc = G*M/(rMerc*rMerc);
-	double sMerc = uMerc*dt+(0.5*aMerc*dt*dt);
-
-	
 	double cirMerc = 2*Math.PI*rMerc;
 	double cirVenus = 2*Math.PI*rVenus;
 	double cirEarth = 2*Math.PI*rEarth;
