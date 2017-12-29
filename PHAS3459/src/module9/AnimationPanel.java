@@ -1,3 +1,8 @@
+/*
+ * extends GraphicsPanel
+ * animates the panel
+ */
+
 package module9;
 
 import javax.swing.*;
@@ -40,11 +45,6 @@ public class AnimationPanel extends GraphicsPanel implements ActionListener {
 	private static final double G = 6.674*Math.pow(10, -11); // gravitational constant
 	private static final double M = 100; // mass of sun
 
-	private static final double mMerc = 10; // mass of mercury
-	private final double mVenus = 30; // mass of venus
-	private final double mEarth = 40; // mass of earth
-	private final double mMars = 20; // mass of mars
-	
 	double uMerc = 10;
 	
 	double aMerc = G*M/(rMerc*rMerc);

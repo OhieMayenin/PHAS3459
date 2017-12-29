@@ -1,3 +1,9 @@
+/*
+ * extends AnimationPanel
+ * adds static decoration including
+ * asteroid belt and background stars
+ */
+
 package module9;
 
 import java.util.Random;
@@ -10,8 +16,8 @@ public class EmbellishedAnimPanel extends AnimationPanel{
 		super(width,height,dt);
 		this.width = width;
 		this.height = height;
-		createStarField();
-		createAsteroidBelt();
+		createStarField(); // randomly generate star coordinates
+		createAsteroidBelt(); // randomly generate asteroid coordinates
 
 	}
 	
@@ -32,18 +38,18 @@ public class EmbellishedAnimPanel extends AnimationPanel{
 	 * to be painted in GraphicsPanel
 	 */
 	public void createStarField() {
-		// Create the arrays
+		// create arrays of specified lengths
 		Random rand = new Random();
 		starX = new int[NUM_STARS];
 		starY = new int[NUM_STARS];
 		starRadius = new int[NUM_STARS];
-		// Fill them in with random values
+		
+		// fill arrays with randomly generated coords and radius
 		for (int i = 0; i < NUM_STARS; i++) {
 			starX[i] = rand.nextInt(width);
 			starY[i] = rand.nextInt(height);
 			starRadius[i] = rand.nextInt(starMaxRadius);
 		}
-
 	}
 	
 	/*
@@ -51,12 +57,13 @@ public class EmbellishedAnimPanel extends AnimationPanel{
 	 * to be painted in GraphicsPanel
 	 */
 	public void createAsteroidBelt() {
-		// Create the arrays
+		// create arrays of specified lengths
 		Random rand = new Random();
 		astX = new int[NUM_AST];
 		astY = new int[NUM_AST];
 		astRadius = new int[NUM_AST];
-		// Fill them in with random values
+		
+		// fill arrays with randomly generated coords and radius
 		for (int i = 0; i < NUM_AST; i++) {
 			astX[i] = rand.nextInt(width);
 			astY[i] = rand.nextInt(height);	

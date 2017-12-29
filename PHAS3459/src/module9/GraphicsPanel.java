@@ -1,3 +1,9 @@
+/* 
+ * JPanel superclass contains graphics
+ * contains inner planets, jupiter, Halley's comet
+ * contains static asteroid belt
+ */
+
 package module9;
 
 import javax.swing.*;
@@ -30,12 +36,7 @@ public class GraphicsPanel extends JPanel {
 	static int xComet;
 	static int yComet;
 
-	// set polar coordinates
-	//	static int rMerc = (int) Math.sqrt((xMerc - xSun)*(xMerc - xSun) + (yMerc - ySun)*(yMerc - ySun));
-	//	static int rVenus = (int) Math.sqrt((xVenus - xSun)*(xVenus - xSun) + (yVenus - ySun)*(yVenus - ySun));;
-	//	static int rEarth = (int) Math.sqrt((xEarth - xSun)*(xEarth - xSun) + (yEarth - ySun)*(yEarth - ySun));;
-	//	static int rMars = (int) Math.sqrt((xMars - xSun)*(xMars - xSun) + (yMars - ySun)*(yMars - ySun));;
-
+	
 	// set them constant
 	static int rMerc = 50;
 	static int rVenus = 100;
@@ -165,9 +166,12 @@ public class GraphicsPanel extends JPanel {
 		Font f = new Font("TimesRoman",Font.BOLD,20);
 		g.setFont(f);
 		
+		double earthYears = Math.round(100*angleEarth/6.28318);
+		double marsYears = Math.round(100*angleMars/6.28318);
+		
 		// time elapsed
-		g.drawString("Earth Years Elapsed: " + angleEarth/6.28318 +"   " + angleMoon/(6.28318*12), width/20, height/20);
-		g.drawString("Martian Years Elapsed: " + angleMars/6.28318, width/20, height/14);
+		g.drawString("Earth Years Elapsed: " + earthYears/100, width/20, height/20);
+		g.drawString("Martian Years Elapsed: " + marsYears/100, width/20, height/14);
 		
 		// Halley's comet label
 		f = new Font("TimesRoman",Font.TRUETYPE_FONT,11);
