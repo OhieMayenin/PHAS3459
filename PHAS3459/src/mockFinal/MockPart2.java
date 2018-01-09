@@ -2,10 +2,10 @@ package mockFinal;
 
 import java.util.HashMap;
 
-public class MockPart1 {
+public class MockPart2 {
 	static HashMap<String,RecordingSample> samples;
-	
 	public static void main(String[] args) {
+		 // get results from MockPart1
 		String urlIndex = "http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/index.txt"; // url of index.txt
 		String recording1 = "recording01.txt";	
 		String recording2 = "recording02.txt";
@@ -31,6 +31,17 @@ public class MockPart1 {
 			System.out.println(samples.values());
 		}
 		catch (Exception e) {e.printStackTrace();}
+		
+		System.out.println("\n" +"Now classifying samples by duration and volume:");
+		
+		DurationClassifier durClassifier = new DurationClassifier();
+		VolumeClassifier volClassifier = new VolumeClassifier();
+		
+		for (RecordingSample sample : samples.values()) {
+			System.out.println(sample);
+			durClassifier.run(sample);
+			volClassifier.run(sample);
+		}
 	}
 
 
@@ -48,7 +59,7 @@ public class MockPart1 {
 
 		return samples;
 	}
-}
-
-
+		
+	
+	}
 
