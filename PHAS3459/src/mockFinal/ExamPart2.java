@@ -1,4 +1,4 @@
-package mockExam;
+package mockFinal;
 
 public class ExamPart2 {
 

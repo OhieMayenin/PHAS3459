@@ -1,6 +1,4 @@
-package mockExam;
-
-import mockFinal.RecordingSample;
+package mockFinal;
 
 public interface SoundClassification {
 	void classification(RecordingSample sample);
