@@ -27,7 +27,7 @@ public class RecordingSample {
 			 sumSquares += data.get(i)*data.get(i);
 		 }
 		 
-		 aRms = Math.sqrt((1/N)*(sumSquares));
+		 aRms = Math.sqrt((sumSquares/N));
 		 T = N/sampleFreq;
 		 amp = 20*Math.log10(aRms/aMax);
 	 }
@@ -36,7 +36,7 @@ public class RecordingSample {
 			String strFirst = "Instrument: " + instrument + "\t" + "File Name: " + filename;
 			String strSecond = "Sample Frequency: " +sampleFreq +"\t" +"Number of Samples: " +N +"\t" +"Max. Amplitude: " +aMax;
 			String strThird = "Duration: " +T +"s" +"\t" +"Amplitude of Signal: " + amp +"dBFS";
-
+			
 			String strAll = "\n" +"\n" +strFirst + "\n" + strSecond +"\n" + strThird;
 
 			return strAll;
