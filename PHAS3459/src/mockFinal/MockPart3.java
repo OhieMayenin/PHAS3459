@@ -28,7 +28,7 @@ public class MockPart3 {
 				RecordingSample sampleB = FileReader.readRecording(genB, indexData);
 				RecordingSample sampleC = FileReader.readRecording(genC, indexData);
 				samples = sort(sample1,sample2,sample3,sample4, sampleA, sampleB, sampleC);
-				System.out.println(samples.values());
+				//System.out.println(samples.values());
 			}
 			catch (Exception e) {e.printStackTrace();}
 			

@@ -6,10 +6,19 @@ public class PitchClassifier implements SoundClassification{
 	
 	public void run(RecordingSample sample) {
 		String pitch = "";
-		double specDensity = spectralDensity(sample.data, sample.T, 100); // 100Hz
-		if (specDensity) {pitch = "low";}
-		else if () {pitch = "medium";}
-		else if () {pitch = "high";}
+		// calculate spectral densities for 3 different frequencies
+		double specDensity100 = Math.abs(spectralDensity(sample.data, sample.T, 100)); // 100Hz
+		double specDensity400 = Math.abs(spectralDensity(sample.data, sample.T, 400)); // 400Hz
+		double specDensity1000 = Math.abs(spectralDensity(sample.data, sample.T, 1000)); // 1000Hz
+		// classify pitch based on spectral density
+		if (specDensity100 > specDensity400 && specDensity100 > specDensity1000) {pitch = "low";}
+		else if (specDensity400 > specDensity100 && specDensity400 > specDensity1000) {pitch = "medium";}
+		else if (specDensity1000 > specDensity100 && specDensity1000 > specDensity400) {pitch = "high";}
+		System.out.println(specDensity100);
+		System.out.println(specDensity400);
+		System.out.println(specDensity1000);
+		
+		System.out.println("This sound is: " +pitch);
 	}
 	
 	
