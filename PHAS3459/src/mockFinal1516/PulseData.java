@@ -12,8 +12,8 @@ public class PulseData {
 	String detector;
 	ArrayList<String> data;
 	double sum = 0;
-	double amplitude = 0;
-	int arrivalTime = 0;
+	double amplitude;
+	int arrivalTime;
 
 	public PulseData (String detector, ArrayList<String> data) {
 		this.detector = detector;
@@ -23,19 +23,20 @@ public class PulseData {
 	}
 
 	private double calculateAmp() {
-		//this.amplitude = 0;
+		amplitude = 0;
 		for (int i = 0; i < data.size(); i++) {
-			if (Double.parseDouble(data.get(i)) > this.amplitude) {
-				this.amplitude = Double.parseDouble(data.get(i));
+			if (Double.parseDouble(data.get(i)) > amplitude) {
+				amplitude = Double.parseDouble(data.get(i));
 			}
 		}
-		return this.amplitude;
+		return amplitude;
 	}
 
 	private double calculateArrivTime() {
+		arrivalTime = 0;
 		for (int i = 0; i < data.size(); i++) {
-			this.arrivalTime++;
-			if (Double.parseDouble(data.get(i)) == this.amplitude) {
+			arrivalTime++;
+			if (Double.parseDouble(data.get(i)) == amplitude) {
 				break;
 			}
 		}
@@ -52,8 +53,7 @@ public class PulseData {
 
 	public String toString () {
 		String str1 = "\n"+"Detector ID: " +detector +"\n";
-		String str2 = ""+data.get(0)+", " +data.get(1);
-		String finalStr = str1+str2;
+		String finalStr = str1;
 
 		return finalStr;
 	}

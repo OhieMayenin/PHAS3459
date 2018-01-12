@@ -32,10 +32,11 @@ public class Mock1516PPt1 {
 				System.out.println("\n" +"The detector " +detector +" has " +database.get(detector).size() +" pulses.");
 				
 				int sumArrivTime = 0;
+				numPulses = 0;
 				for (PulseData pulse : database.get(detector)) {
 					totalSum += pulse.getAmplitude();
 					numPulses++;
-					sumArrivTime += pulse.getArrivalTime();
+					sumArrivTime += pulse.arrivalTime;
 				}
 				double meanAmp = totalSum/numPulses;
 				double meanArrivTime = sumArrivTime/numPulses;

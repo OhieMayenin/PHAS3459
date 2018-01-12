@@ -43,7 +43,7 @@ public class DataReader {
 
 		s.close(); // detectors.txt read
 		
-		System.out.println(detectors);
+		//System.out.println(detectors);
 
 		// extracting detector data from detectors.txt
 		URL u2 = new URL(urlName+"signals.txt"); // url to detector data
