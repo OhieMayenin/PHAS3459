@@ -52,7 +52,7 @@ public class PulseData {
 
 	public String toString () {
 		String str1 = "\n"+"Detector ID: " +detector +"\n";
-		String str2 = "";
+		String str2 = ""+data.get(0)+", " +data.get(1);
 		String finalStr = str1+str2;
 
 		return finalStr;

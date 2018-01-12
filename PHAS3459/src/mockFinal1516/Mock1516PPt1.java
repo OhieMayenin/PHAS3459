@@ -13,7 +13,7 @@ public class Mock1516PPt1 {
 		try {
 			String urlName = "http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2015-16/";
 			HashMap<String,ArrayList<PulseData>> database = DataReader.sortData(urlName);
-			System.out.println(database);
+			//System.out.println(database);
 
 			double totalSum = 0;
 			int numPulses = 0;
@@ -29,7 +29,7 @@ public class Mock1516PPt1 {
 			System.out.println("The mean amplitude of all the pulses: " +(totalSum/numPulses));
 			
 			for (String detector : database.keySet()) {
-				System.out.println("\n" +"The detector " +detector +" has " +database.get(detector).size() +" signals.");
+				System.out.println("\n" +"The detector " +detector +" has " +database.get(detector).size() +" pulses.");
 				
 				int sumArrivTime = 0;
 				for (PulseData pulse : database.get(detector)) {
@@ -51,6 +51,7 @@ public class Mock1516PPt1 {
 				double particleSpeed = distance/meanArrivTime;
 				System.out.println("The speed of the particles: " +particleSpeed + " m/ns");
 				//System.out.println(DataReader.detectors);
+				
 				
 			}
 		}

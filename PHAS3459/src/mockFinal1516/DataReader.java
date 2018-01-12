@@ -6,6 +6,7 @@
 package mockFinal1516;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -17,7 +18,7 @@ public class DataReader {
 	String urlName = "http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2015-16/";
 	static ArrayList<Detector> detectors;
 
-	public static HashMap<String,ArrayList<PulseData>> sortData(String urlName) throws Exception {
+	public static HashMap<String,ArrayList<PulseData>> sortData(String urlName) throws IOException {
 		HashMap<String,ArrayList<PulseData>> database = new HashMap<String,ArrayList<PulseData>>();
 
 		String detectorID;
@@ -50,9 +51,10 @@ public class DataReader {
 		InputStreamReader isr_url2 = new InputStreamReader(is_url2); // wrap input stream
 		BufferedReader url2 = new BufferedReader(isr_url2); // reads large chunk of data into memory
 		
-		ArrayList<String> data = new ArrayList<String>();
+
 
 		while ((line = url2.readLine()) != null) {
+			ArrayList<String> data = new ArrayList<String>();
 			Scanner s2 = new Scanner(line);
 			detectorID = s2.next();
 
@@ -61,24 +63,24 @@ public class DataReader {
 			}
 
 			PulseData pulse = new PulseData(detectorID,data);
-		
-			boolean success = false;
-			
-			for (String key : database.keySet()) {
-				if (key.equals(detectorID)) {
-					database.get(key).add(pulse);
-					success = true;
+					
+			for (Detector det : detectors) { 
+				ArrayList<PulseData> pulses = database.get(det.detectorID);
+				if (pulses == null) {
+					database.put(det.detectorID, new ArrayList<PulseData>() );
+				}
+				
+				if (det.detectorID.equals(detectorID)) {
+				break;
 				}
 			}
 			
-			if (success == false) {
-				ArrayList<PulseData> pulses = new ArrayList<PulseData>();
-				pulses.add(pulse);
-				database.put(detectorID, pulses);
+			ArrayList<PulseData> pulses = database.get(detectorID);
+			if (pulses == null) {
+				database.put(detectorID, new ArrayList<PulseData>() );
 			}
-			s2.close(); // signals.txt read
+			database.get(detectorID).add(pulse);
 		}
-		
 
 		return database;
 	}
