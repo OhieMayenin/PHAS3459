@@ -23,6 +23,7 @@ public class PulseData {
 	}
 
 	private double calculateAmp() {
+		//this.amplitude = 0;
 		for (int i = 0; i < data.size(); i++) {
 			if (Double.parseDouble(data.get(i)) > this.amplitude) {
 				this.amplitude = Double.parseDouble(data.get(i));
