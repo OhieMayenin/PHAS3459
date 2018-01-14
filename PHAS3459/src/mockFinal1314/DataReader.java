@@ -133,12 +133,19 @@ public class DataReader {
 	
 	// PT3 METHODS
 	
-	public HashMap<String,ArrayList<Animal>>> sort(ArrayList<Animal> animals) {
+	public HashMap<String,ArrayList<Animal>> sortAnimals(ArrayList<Animal> animals) {
 		HashMap<String,ArrayList<Animal>> database = new HashMap<String,ArrayList<Animal>>();
 	
 		for (Animal animal : animals) {
+			String key = animal.code;
 			
-		}
+			if (database.get(key) == null) {
+				ArrayList<Animal> species = new ArrayList<Animal>();
+				database.put(key, species);
+			}
+			
+			database.get(key).add(animal);
+			}
 		
 		return database;
 	}

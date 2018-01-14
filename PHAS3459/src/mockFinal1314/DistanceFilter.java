@@ -42,4 +42,38 @@ public class DistanceFilter implements SpecimenFilter{
 		}
 		return withinDistance;
 	}
+	
+	public ArrayList<Animal> filterAnimals(ArrayList<Animal> allSpecimens) {
+		ArrayList<Animal> withinDistance = new ArrayList<Animal>();
+		
+		for (Animal animal : allSpecimens) {
+			double latitudeAnimal= Double.parseDouble(animal.latitude);
+			double longitudeAnimal = Double.parseDouble(animal.longitude);
+			
+			double maxLat = Math.sin(distance/radius);
+			double maxLong = Math.sin(distance/radius);
+			
+			if (latitudeAnimal < latitude+maxLat && longitudeAnimal < longitude+maxLong) {
+				withinDistance.add(animal);
+			}
+		}
+		return withinDistance;
+	}
+	
+	public ArrayList<Animal> animalsOutsideDistance(ArrayList<Animal> allSpecimens) {
+		ArrayList<Animal> outsideDistance = new ArrayList<Animal>();
+		
+		for (Animal animal : allSpecimens) {
+			double latitudeAnimal= Double.parseDouble(animal.latitude);
+			double longitudeAnimal = Double.parseDouble(animal.longitude);
+			
+			double maxLat = Math.sin(distance/radius);
+			double maxLong = Math.sin(distance/radius);
+			
+			if (latitudeAnimal > latitude+maxLat || longitudeAnimal > longitude+maxLong) {
+				outsideDistance.add(animal);
+			}
+		}
+		return outsideDistance;
+	}
 }
