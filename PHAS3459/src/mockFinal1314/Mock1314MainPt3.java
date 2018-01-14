@@ -16,11 +16,11 @@ public class Mock1314MainPt3 {
 
 		try {
 			speciesDatabase = dr.extractSpecies(animalSpeciesURL);
-			//System.out.println(speciesDatabase);
+			System.out.println(speciesDatabase);
 
 			ArrayList<Animal> allAnimals = dr.readAnimalURL(animalSurveyURL);
 			HashMap<String,ArrayList<Animal>> surveyDatabase = dr.sortAnimals(allAnimals);
-			System.out.println(surveyDatabase);
+//			System.out.println(surveyDatabase);
 			System.out.println("\n");
 
 			distanceFiltering(surveyDatabase);
