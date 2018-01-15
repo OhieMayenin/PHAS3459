@@ -35,14 +35,10 @@ public class Mock1213Main {
 			eventsInRange(120,140);
 
 			candEventsInRange(120, 240);
-			
-			System.out.println("\n");
+
 			logLikelihood("GG");
+			System.out.println("\n");
 			logLikelihood("ZZ");
-			
-			// PART 1 COMPLETE - VLARGE LOG LIKELIHOODS
-			
-			
 
 
 		}
@@ -84,8 +80,17 @@ public class Mock1213Main {
 	}
 
 	public static void logLikelihood(String key) {
-		
-	}
+		double loglikelihood = 0;
+		for (int i = 0; i < 100; i++) {
+			Collection<String> higgsKeys = higgsDatabase.keySet(); // key of hashmap
 
+			for (String higgsKey : higgsKeys) {
+				loglikelihood += (Double.parseDouble(binDatabase.get(key).get(i).events) - higgsDatabase.get(higgsKey).size()) +
+						(higgsDatabase.get(higgsKey).size()*Math.log((higgsDatabase.get(higgsKey).size()/Double.parseDouble(binDatabase.get(key).get(i).events))));
+			}
+		}
+
+		System.out.println("Log likelihood: " +loglikelihood);
+	}
 
 }
