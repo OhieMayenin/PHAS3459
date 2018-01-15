@@ -130,7 +130,7 @@ public class DataReader {
 
 			higgsInBin = new ArrayList<Higgs>(); // to hold Higgs in each bin
 			String binEnergy = "" +minE +"-" +maxE; // key of hashmap
-
+	
 			// add higgs to arraylist if it is inside the bin
 			for (Higgs higgs : allHiggs) {
 				if (Double.parseDouble(higgs.energy) < maxE && Double.parseDouble(higgs.energy) >= minE) {
