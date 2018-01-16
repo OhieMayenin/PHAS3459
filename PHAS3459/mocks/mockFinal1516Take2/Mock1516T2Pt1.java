@@ -30,8 +30,11 @@ public class Mock1516T2Pt1 {
 			// implementations of ArrivalTimeCalculator
 			//			maxVoltageCalc(allPulses.get(2));
 			//			presentThresholdVoltageCalc(allPulses.get(2));
-			
-			recalculateSpeed();
+
+			try {
+				recalculateSpeed(); 
+			}
+			catch (Exception e) {e.printStackTrace();}
 		}
 		catch (IOException e) {e.printStackTrace();}
 	}
@@ -71,7 +74,7 @@ public class Mock1516T2Pt1 {
 			// calculate mean arrival time
 			double sumTime = 0;
 			for (Pulse p : pulseDatabase.get(key)) {
-				sumTime += p.arrivalTime;
+				sumTime += maxVoltageCalc(p);
 			}
 			double meanArrival = sumTime/pulseDatabase.get(key).size();
 			double speed = Double.parseDouble(allDetectors.get(key))/(sumTime/pulseDatabase.get(key).size()); 
@@ -80,37 +83,45 @@ public class Mock1516T2Pt1 {
 		}
 	}
 
-	public static void maxVoltageCalc(Pulse p) {
+	public static double maxVoltageCalc(Pulse p) {
 		MaxVoltageTimeCalc mvCalc = new MaxVoltageTimeCalc();
 
-		System.out.println("Arrival Time (max voltage): " +mvCalc.run(p));
+		return mvCalc.run(p);
 	}
 
-	public static void presentThresholdVoltageCalc(Pulse p) {
+	public static void presentThresholdVoltageCalc(Pulse p) throws Exception {
 		ThresholdTimeCalc ttCalc = new ThresholdTimeCalc(1);
 
 		System.out.println("Arrival Time (threshold): " +ttCalc.run(p));
 	}
-	
-	public static double thresholdVoltageCalc(Pulse p) {
+
+	public static double thresholdVoltageCalc(Pulse p) throws Exception {
 		ThresholdTimeCalc ttCalc = new ThresholdTimeCalc(1);
-		
+
 		return ttCalc.run(p);
 	}
 
-	public static void recalculateSpeed() {
+	public static void recalculateSpeed() throws Exception {
+		System.out.println("--- Stats from using ArrivalTimeCalculator implementations ---");
 		for (String key : pulseDatabase.keySet()) {
 			// calculate mean arrival time
 			double sumTime = 0;
 			for (Pulse p : pulseDatabase.get(key)) {
 				sumTime += thresholdVoltageCalc(p);
 			}
+			double sumTime2 = 0;
+			for (Pulse p : pulseDatabase.get(key)) {
+				sumTime2 += maxVoltageCalc(p);
+			}
 			double meanArrival = sumTime/pulseDatabase.get(key).size();
+			double meanArrival2 = sumTime2/pulseDatabase.get(key).size();
 			double speed = Double.parseDouble(allDetectors.get(key))/(sumTime/pulseDatabase.get(key).size()); 
 			System.out.println("\n");
-			System.out.println("--- Stats from using second implementation ---");
-			System.out.println("The mean arrival time of the pulses: " +meanArrival +" ns");
-			System.out.println("Speed of the particles: " +speed +" m/ns");
+			System.out.println("--- " +key +" ---");
+			System.out.println("The mean arrival time of the pulses (max voltage): " +meanArrival +" ns");
+			System.out.println("The mean arrival time of the pulses (threshold): " +meanArrival2 +" ns");
+			System.out.println("Difference between arrival times: " +Math.abs(meanArrival-meanArrival2) +" ns");
+			System.out.println("Speed of the particles (max voltage): " +speed +" m/ns");
 		}
 	}
 }
