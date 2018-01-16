@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class Mock1516T2Pt1 {
 	static HashMap<String,String> allDetectors;
 	static HashMap<String,ArrayList<Pulse>> pulseDatabase;
-	
+
 	public static void main(String[] args) {
 		String signals = "signals.txt";
 		String detectors = "detectors.txt";
@@ -21,11 +21,17 @@ public class Mock1516T2Pt1 {
 
 			allDetectors = dr.readDetectors(detectors);
 			System.out.println(allDetectors);
-			
+
 			pulseDatabase = sortByDetector(allPulses);
 			//System.out.println(pulseDatabase);
-			
+
 			presentData();
+
+			// implementations of ArrivalTimeCalculator
+			//			maxVoltageCalc(allPulses.get(2));
+			//			presentThresholdVoltageCalc(allPulses.get(2));
+			
+			recalculateSpeed();
 		}
 		catch (IOException e) {e.printStackTrace();}
 	}
@@ -47,31 +53,64 @@ public class Mock1516T2Pt1 {
 
 		return pulsesByDetector;
 	}
-	
+
 	public static void presentData() {
-		
+
 		for (String key : pulseDatabase.keySet()) {
-		System.out.println("\n");
-		System.out.println("Detector ID: " +key +"\t" +"Distance: " +allDetectors.get(key) +" m");
-		System.out.println("Total number of pulses: " +pulseDatabase.get(key).size());
-		
-		//calculate mean amplitude
-		double sum = 0;
-		for (Pulse p : pulseDatabase.get(key)) {
-			sum += p.amplitude;
-		}
-		System.out.println("The mean amplitude of the pulses: " +sum/pulseDatabase.get(key).size() +" V");
-		
-		// calculate mean arrival time
-		double sumTime = 0;
-		for (Pulse p : pulseDatabase.get(key)) {
-			sumTime += p.arrivalTime;
-		}
-		double meanArrival = sumTime/pulseDatabase.get(key).size();
-		double speed = Double.parseDouble(allDetectors.get(key))/(sumTime/pulseDatabase.get(key).size()); 
-		System.out.println("The mean arrival time of the pulses: " +meanArrival +" ns");
-		System.out.println("Speed of the particles: " +speed +" m/ns");
+			System.out.println("\n");
+			System.out.println("Detector ID: " +key +"\t" +"Distance: " +allDetectors.get(key) +" m");
+			System.out.println("Total number of pulses: " +pulseDatabase.get(key).size());
+
+			//calculate mean amplitude
+			double sum = 0;
+			for (Pulse p : pulseDatabase.get(key)) {
+				sum += p.amplitude;
+			}
+			System.out.println("The mean amplitude of the pulses: " +sum/pulseDatabase.get(key).size() +" V");
+
+			// calculate mean arrival time
+			double sumTime = 0;
+			for (Pulse p : pulseDatabase.get(key)) {
+				sumTime += p.arrivalTime;
+			}
+			double meanArrival = sumTime/pulseDatabase.get(key).size();
+			double speed = Double.parseDouble(allDetectors.get(key))/(sumTime/pulseDatabase.get(key).size()); 
+			System.out.println("The mean arrival time of the pulses: " +meanArrival +" ns");
+			System.out.println("Speed of the particles: " +speed +" m/ns");
 		}
 	}
 
+	public static void maxVoltageCalc(Pulse p) {
+		MaxVoltageTimeCalc mvCalc = new MaxVoltageTimeCalc();
+
+		System.out.println("Arrival Time (max voltage): " +mvCalc.run(p));
+	}
+
+	public static void presentThresholdVoltageCalc(Pulse p) {
+		ThresholdTimeCalc ttCalc = new ThresholdTimeCalc(1);
+
+		System.out.println("Arrival Time (threshold): " +ttCalc.run(p));
+	}
+	
+	public static double thresholdVoltageCalc(Pulse p) {
+		ThresholdTimeCalc ttCalc = new ThresholdTimeCalc(1);
+		
+		return ttCalc.run(p);
+	}
+
+	public static void recalculateSpeed() {
+		for (String key : pulseDatabase.keySet()) {
+			// calculate mean arrival time
+			double sumTime = 0;
+			for (Pulse p : pulseDatabase.get(key)) {
+				sumTime += thresholdVoltageCalc(p);
+			}
+			double meanArrival = sumTime/pulseDatabase.get(key).size();
+			double speed = Double.parseDouble(allDetectors.get(key))/(sumTime/pulseDatabase.get(key).size()); 
+			System.out.println("\n");
+			System.out.println("--- Stats from using second implementation ---");
+			System.out.println("The mean arrival time of the pulses: " +meanArrival +" ns");
+			System.out.println("Speed of the particles: " +speed +" m/ns");
+		}
+	}
 }
