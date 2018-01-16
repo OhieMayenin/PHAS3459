@@ -12,11 +12,11 @@ public class Pulse {
 		this.detector = detectorID;
 		this.pulse = pulse;
 
-		// set amplitude
 		double maxSignal = 0;
 		int count = -1;
 		int arrivalTime = 0;
 		
+		// determine arrival time and amplitude
 		for (double signal : pulse) {
 			count++;
 			if (signal > maxSignal) {

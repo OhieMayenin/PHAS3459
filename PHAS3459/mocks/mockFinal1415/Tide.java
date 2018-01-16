@@ -12,6 +12,14 @@ public class Tide {
 	String seaLevel;
 	String predicted;
 	
+	/**
+	 * constructor for Tide object
+	 * @param date - date of measurement, dd/mm/yyyy
+	 * @param time - time of measurement hh:mm
+	 * @param loc - location code
+	 * @param seaLevel - measured sea level in metres
+	 * @param predicted - predicted sea level in metres
+	 */
 	public Tide(String date, String time, String loc, String seaLevel, String predicted) {
 		this.date = date;
 		this.time = time;
@@ -22,6 +30,9 @@ public class Tide {
 		
 	}
 	
+	/*
+	 * toString method for Tide objects
+	 */
 	public String toString() {
 		String finalStr;
 		String str1 = "Location of Measurement: " +loc;
