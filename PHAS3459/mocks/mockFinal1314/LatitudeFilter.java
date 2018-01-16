@@ -6,9 +6,13 @@ public class LatitudeFilter implements SpecimenFilter {
 	double maxLatitude;
 	double minLatitude;
 	
-	public LatitudeFilter(double maxLatitude, double minLatitude) {
+	public LatitudeFilter(double maxLatitude, double minLatitude) throws Exception {
 		this.maxLatitude = maxLatitude;
 		this.minLatitude = minLatitude;
+		
+		if (maxLatitude <= minLatitude) {
+			throw new Exception ("ERROR: Maximum latitude cannot be smaller or equal to minimum latitude.");
+		}
 	}
 
 	@Override

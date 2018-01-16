@@ -29,6 +29,7 @@ public class Mock1314MainPt1 {
 			// PART 1 COMPLETE IN 1 HOUR
 			// PART 2
 			
+			try {
 			// implementing latitude filter and calculating mean height
 			ArrayList<Plant> filtered = filterNorth(surveyDatabase);
 			double meanNorth = calculateMean(filtered);
@@ -36,14 +37,19 @@ public class Mock1314MainPt1 {
 			ArrayList<Plant> filteredS = filterSouth(surveyDatabase);
 			double meanSouth = calculateMean(filteredS);
 			System.out.println("\n" +"Mean Height of Southern Species: " +meanSouth);
+			}
+			catch (Exception e) {e.printStackTrace();}
 			
+			try {
 			// implementing distance filter and calculating mean height
 			ArrayList<Plant> filterMountain = filterDistance(surveyDatabase);
 			double meanMountain = calculateMean(filterMountain);
 			System.out.println("\n" +"Mean Height of Specimens within 50km of mountain summit: " +meanMountain);
-			
+			}
+			catch (Exception e) {e.printStackTrace();}
 		}
-		catch (IOException e) {e.printStackTrace();}
+		catch (IOException e) {e.printStackTrace();} 
+
 	
 	}
 	
@@ -94,7 +100,7 @@ public class Mock1314MainPt1 {
 		return mean;
 	}
 	
-	public static ArrayList<Plant> filterNorth(HashMap<String,ArrayList<Plant>> surveyDatabase) {
+	public static ArrayList<Plant> filterNorth(HashMap<String,ArrayList<Plant>> surveyDatabase) throws Exception {
 		LatitudeFilter lf = new LatitudeFilter(0,-30); // north of -30
 		ArrayList<Plant> northSpecimens = lf.filter(surveyDatabase.get("NT"));
 		//System.out.println(northSpecimens);
@@ -102,7 +108,7 @@ public class Mock1314MainPt1 {
 		return northSpecimens;
 	}
 	
-	public static ArrayList<Plant> filterSouth(HashMap<String,ArrayList<Plant>> surveyDatabase) {
+	public static ArrayList<Plant> filterSouth(HashMap<String,ArrayList<Plant>> surveyDatabase) throws Exception {
 		LatitudeFilter lf2 = new LatitudeFilter(-30,-100); // south of -30
 		ArrayList<Plant> southSpecimens = lf2.filter(surveyDatabase.get("NT"));
 		//System.out.println(southSpecimens);
@@ -110,7 +116,7 @@ public class Mock1314MainPt1 {
 		return southSpecimens;
 	}
 	
-	public static ArrayList<Plant> filterDistance(HashMap<String,ArrayList<Plant>> surveyDatabase) {
+	public static ArrayList<Plant> filterDistance(HashMap<String,ArrayList<Plant>> surveyDatabase) throws Exception {
 		DistanceFilter df = new DistanceFilter(50, -30.967, 75.430);
 		ArrayList<Plant> filtered = df.filter(surveyDatabase.get("BN"));
 		

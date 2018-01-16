@@ -8,6 +8,7 @@ import java.util.Iterator;
 
 public class Mock1314MainPt3 {
 	static HashMap<String,String> speciesDatabase;
+	static HashMap<String, ArrayList<Animal>> surveyDatabase;
 
 	public static void main(String[] args) {
 		String animalSpeciesURL = "species-animals.txt";
@@ -19,18 +20,20 @@ public class Mock1314MainPt3 {
 			System.out.println(speciesDatabase);
 
 			ArrayList<Animal> allAnimals = dr.readAnimalURL(animalSurveyURL);
-			HashMap<String,ArrayList<Animal>> surveyDatabase = dr.sortAnimals(allAnimals);
-//			System.out.println(surveyDatabase);
-			System.out.println("\n");
-
-			distanceFiltering(surveyDatabase);
-
-
+			surveyDatabase = dr.sortAnimals(allAnimals);
+			//			System.out.println(surveyDatabase);
+			System.out.println("\n");	
 		}
 		catch (IOException e) {e.printStackTrace();}
+
+		try {
+			distanceFiltering(surveyDatabase);
+		}
+		catch (Exception e) {e.printStackTrace();}
 	}
 
-	public static void distanceFiltering (HashMap<String,ArrayList<Animal>> surveyDatabase) {
+
+	public static void distanceFiltering (HashMap<String,ArrayList<Animal>> surveyDatabase) throws Exception {
 		// distance filtering 100km from mountain summit
 		DistanceFilter df = new DistanceFilter(100, -30.967, 75.430);
 		Collection<ArrayList<Animal>> allSpecies = surveyDatabase.values();
@@ -39,17 +42,17 @@ public class Mock1314MainPt3 {
 		ArrayList<Animal> outsideRange = new ArrayList<Animal>();
 		ArrayList<ArrayList<Animal>> withinCollection = new ArrayList<ArrayList<Animal>>();
 		ArrayList<ArrayList<Animal>> outsideCollection = new ArrayList<ArrayList<Animal>>();
-		
+
 		for (ArrayList<Animal> species : allSpecies) {
 			withinRange = df.filterAnimals(species);
 			outsideRange = df.animalsOutsideDistance(species);
 			withinCollection.add(withinRange);
 			outsideCollection.add(outsideRange);
 		}
-		
+
 		// merge all arraylists with arraylists into one super arraylist
-		
-		
+
+
 		for (Iterator<Animal> it = withinRange.iterator(); it.hasNext();) {
 			Animal animal = it.next();
 			for (Animal animal2 : outsideRange) {

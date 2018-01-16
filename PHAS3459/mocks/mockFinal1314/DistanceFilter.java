@@ -13,10 +13,14 @@ public class DistanceFilter implements SpecimenFilter{
 	 * and latitude and longitude
 	 * of point to set as centre
 	 */
-	public DistanceFilter (double distance, double latitude, double longitude) {
+	public DistanceFilter (double distance, double latitude, double longitude) throws Exception {
 		this.distance = distance;
 		this.latitude = latitude;
 		this.longitude = longitude;
+		
+		if (distance <= 0) {
+			throw new Exception ("Distance must be a positive, non-zero value");
+		}
 	}
 
 	@Override
